@@ -15,21 +15,26 @@ export class AppComponent {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: any) => {
-      this.isUserLoggedIn()
+      this.isUserLoggedIn(event)
       // if(this.headerComponent) {
       //   this.headerComponent.checkAnnouncements("all")
       // }
     })
   }
 
-  ngOnInit() { this.isUserLoggedIn() }
+  ngOnInit() { }
 
-  isUserLoggedIn(){
+  isUserLoggedIn(event: any){
+    console.log('-check route-->', event.url);
     if(sessionStorage.getItem("authToken")){
       this.is_login = true
     } else {
       this.is_login = false
-      this.router.navigateByUrl("/login")
+      if(event.url == '/registration'){
+
+      } else {
+        this.router.navigateByUrl("/login")
+      }
     }
   }
 }

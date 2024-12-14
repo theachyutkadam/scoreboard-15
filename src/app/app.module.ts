@@ -11,6 +11,7 @@ import { MatchesComponent } from './components/matches/matches.component';
 import { SidebarComponent } from './common/sidebar/sidebar.component';
 import { HeaderComponent } from './common/header/header.component';
 import { CenterTableComponent } from './common/center-table/center-table.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,8 @@ import { CenterTableComponent } from './common/center-table/center-table.compone
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [],

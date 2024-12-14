@@ -1,15 +1,12 @@
-<body>
-  <div *ngIf="is_login">
+<body *ngIf="is_login">
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
     <app-sidebar></app-sidebar>
-  </div>
-  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-      data-sidebar-position="fixed" data-header-position="fixed">
-
-      <div class="body-wrapper">
-        <app-header></app-header>
-        <div class="container-fluid">
-          <router-outlet></router-outlet>
-        </div>
+    <div class="body-wrapper">
+      <app-header></app-header>
+      <div class="container-fluid" style="max-width: none">
+        <router-outlet></router-outlet>
       </div>
+    </div>
   </div>
 </body>
+<router-outlet *ngIf="!is_login"></router-outlet>

@@ -16,9 +16,6 @@ export class AppComponent {
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: any) => {
       this.isUserLoggedIn(event)
-      // if(this.headerComponent) {
-      //   this.headerComponent.checkAnnouncements("all")
-      // }
     })
   }
 
@@ -30,9 +27,7 @@ export class AppComponent {
       this.is_login = true
     } else {
       this.is_login = false
-      if(event.url == '/registration'){
-
-      } else {
+      if(event.url == '/registration'){} else {
         this.router.navigateByUrl("/login")
       }
     }

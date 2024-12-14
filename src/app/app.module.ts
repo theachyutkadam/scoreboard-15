@@ -13,6 +13,9 @@ import { HeaderComponent } from './common/header/header.component';
 import { CenterTableComponent } from './common/center-table/center-table.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,16 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+
+    CommonModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      closeButton: true,
+      progressBar: true,
+      progressAnimation: 'increasing'
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

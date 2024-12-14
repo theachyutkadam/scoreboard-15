@@ -1,85 +1,83 @@
 <div class="container-fluid">
-  <!-- <div class="card"> -->
-    <div class="card-body">
-      <div class="card">
-        <div class="card-body">
-          <form class="form-floating">
-            <button type="submit" class="btn btn-sm btn-warning float-end">Reset</button>
-            <button type="submit" class="btn btn-sm btn-primary float-end">Submit</button>
-            <h5 class="card-title fw-semibold mb-4">{{form_type}} Match</h5>
-            <div class="row">
-              <div class="col-sm mb-3">
-                <label for="team1" class="form-label">Team1</label>
-                <select class="form-select" formControlName="team1">
-                  <option selected>Select Team1</option>
-                  <option value="all_rounder">All Rounder</option>
-                  <option value="batsman">Batsman</option>
-                  <option value="bowler">Bowler</option>
-                  <option value="filder">Filder</option>
-                </select>
-              </div>
-              <div class="col-sm mb-3">
-                <label for="team2" class="form-label">Team2</label>
-                <select class="form-select" formControlName="team2">
-                  <option selected>Select Team2</option>
-                  <option value="all_rounder">All Rounder</option>
-                  <option value="batsman">Batsman</option>
-                  <option value="bowler">Bowler</option>
-                  <option value="filder">Filder</option>
-                </select>
-              </div>
-              <div class="col-sm mb-3">
-                <label for="toss_winer_team" class="form-label">Toss Winner Team</label>
-                <select class="form-select" formControlName="toss_winer_team">
-                  <option selected>Select Toss Winner Team</option>
-                  <option value="all_rounder">All Rounder</option>
-                  <option value="batsman">Batsman</option>
-                  <option value="bowler">Bowler</option>
-                  <option value="filder">Filder</option>
-                </select>
-              </div>
-              <div class="col-sm mb-3">
-                <label for="toss_dicision" class="form-label">Toss Dicission</label>
-                <select class="form-select" formControlName="toss_dicision">
-                  <option selected>Select Toss Dicision</option>
-                  <option value="batsman">Batsman</option>
-                  <option value="bowler">Bowler</option>
-                </select>
-              </div>
+  <div class="card-body">
+    <div class="card">
+      <div class="card-body">
+        <form class="form-floating">
+          <button type="submit" class="btn btn-sm btn-warning float-end">Reset</button>
+          <button type="submit" class="btn btn-sm btn-primary float-end">Submit</button>
+          <h5 class="card-title fw-semibold mb-4">{{form_type}} Match</h5>
+          <div class="row">
+            <div class="col-sm mb-3">
+              <label for="team1" class="form-label">Team1</label>
+              <select class="form-select" formControlName="team1">
+                <option selected>Select Team1</option>
+                <option value="all_rounder">All Rounder</option>
+                <option value="batsman">Batsman</option>
+                <option value="bowler">Bowler</option>
+                <option value="filder">Filder</option>
+              </select>
             </div>
-            <div class="row">
-              <div class="col-sm mb-3">
-                <label for="start_at" class="form-label">Match Start Time</label>
-                <input type="datetime-local" class="form-control" formControlName="start_at">
-              </div>
-              <div class="col-sm mb-3">
-                <label for="end_at" class="form-label">Match End Time</label>
-                <input type="datetime-local" class="form-control" formControlName="end_at">
-              </div>
-              <div class="col-sm mb-3">
-                <label for="number_of_overs" class="form-label">Number Of Overs</label>
-                <select class="form-select" formControlName="number_of_overs">
-                  <option selected>Select Overs</option>
-                  <option value="3">3 Overs</option>
-                  <option value="5">5 Overs</option>
-                  <option value="7">7 Overs</option>
-                  <option value="10">10 Overs</option>
-                  <option value="15">15 Overs</option>
-                  <option value="20">20 Overs</option>
-                </select>
-              </div>
+            <div class="col-sm mb-3">
+              <label for="team2" class="form-label">Team2</label>
+              <select class="form-select" formControlName="team2">
+                <option selected>Select Team2</option>
+                <option value="all_rounder">All Rounder</option>
+                <option value="batsman">Batsman</option>
+                <option value="bowler">Bowler</option>
+                <option value="filder">Filder</option>
+              </select>
             </div>
-            <div class="row">
-              <div class="col-sm mb-3">
-                <input type="checkbox" class="form-check-input" formControlName="is_draw" id="is_draw">
-                <label class="form-label" for="is_draw">Is Draw ?</label>
-              </div>
+            <div class="col-sm mb-3">
+              <label for="toss_winer_team" class="form-label">Toss Winner Team</label>
+              <select class="form-select" formControlName="toss_winer_team">
+                <option selected>Select Toss Winner Team</option>
+                <option value="all_rounder">All Rounder</option>
+                <option value="batsman">Batsman</option>
+                <option value="bowler">Bowler</option>
+                <option value="filder">Filder</option>
+              </select>
             </div>
-          </form>
-        </div>
+            <div class="col-sm mb-3">
+              <label for="toss_dicision" class="form-label">Toss Dicission</label>
+              <select class="form-select" formControlName="toss_dicision">
+                <option selected>Select Toss Dicision</option>
+                <option value="batsman">Batsman</option>
+                <option value="bowler">Bowler</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm mb-3">
+              <label for="start_at" class="form-label">Match Start Time</label>
+              <input type="datetime-local" class="form-control" formControlName="start_at">
+            </div>
+            <div class="col-sm mb-3">
+              <label for="end_at" class="form-label">Match End Time</label>
+              <input type="datetime-local" class="form-control" formControlName="end_at">
+            </div>
+            <div class="col-sm mb-3">
+              <label for="number_of_overs" class="form-label">Number Of Overs</label>
+              <select class="form-select" formControlName="number_of_overs">
+                <option selected>Select Overs</option>
+                <option value="3">3 Overs</option>
+                <option value="5">5 Overs</option>
+                <option value="7">7 Overs</option>
+                <option value="10">10 Overs</option>
+                <option value="15">15 Overs</option>
+                <option value="20">20 Overs</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm mb-3">
+              <input type="checkbox" class="form-check-input" formControlName="is_draw" id="is_draw">
+              <label class="form-label" for="is_draw">Is Draw ?</label>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
-  <!-- </div> -->
+  </div>
 </div>
 
 

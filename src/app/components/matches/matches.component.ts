@@ -7,10 +7,12 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./matches.component.css']
 })
 export class MatchesComponent {
+  form_type = "New"
   match_filter: any
-  constructor(private route: ActivatedRoute) {}
 
-  ngOnInit() {
-     this.match_filter = this.route.snapshot.paramMap.get('filter');
+  constructor(private route: ActivatedRoute) {
+    this.match_filter = this.route.snapshot.paramMap.get('filter');
   }
+
+  ngOnInit() {}
 }

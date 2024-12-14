@@ -2,8 +2,8 @@
   <div class="card-body">
     <div class="card">
       <div class="card-body">
-        <form class="form-floating">
-          <button type="submit" class="btn btn-sm btn-warning float-end">Reset</button>
+        <form [formGroup]="match_form" class="form-floating" (ngSubmit)="saveMatches()">
+          <button type="submit" class="btn btn-sm btn-warning float-end" (click)="resert()">Reset</button>
           <button type="submit" class="btn btn-sm btn-primary float-end">Submit</button>
           <h5 class="card-title fw-semibold mb-4">{{form_type}} Match</h5>
           <div class="row">
@@ -11,38 +11,29 @@
               <label for="team1" class="form-label">Team1</label>
               <select class="form-select" formControlName="team1">
                 <option selected>Select Team1</option>
-                <option value="all_rounder">All Rounder</option>
-                <option value="batsman">Batsman</option>
-                <option value="bowler">Bowler</option>
-                <option value="filder">Filder</option>
+                <option *ngFor="let team of teams" [value]="team.id">{{team.name | titlecase}} - {{team.city | titlecase}}</option>
               </select>
             </div>
             <div class="col-sm mb-3">
               <label for="team2" class="form-label">Team2</label>
               <select class="form-select" formControlName="team2">
                 <option selected>Select Team2</option>
-                <option value="all_rounder">All Rounder</option>
-                <option value="batsman">Batsman</option>
-                <option value="bowler">Bowler</option>
-                <option value="filder">Filder</option>
+                <option *ngFor="let team of teams" [value]="team.id">{{team.name | titlecase}} - {{team.city | titlecase}}</option>
               </select>
             </div>
             <div class="col-sm mb-3">
               <label for="toss_winer_team" class="form-label">Toss Winner Team</label>
               <select class="form-select" formControlName="toss_winer_team">
                 <option selected>Select Toss Winner Team</option>
-                <option value="all_rounder">All Rounder</option>
-                <option value="batsman">Batsman</option>
-                <option value="bowler">Bowler</option>
-                <option value="filder">Filder</option>
+                <option *ngFor="let team of teams" [value]="team.id">{{team.name | titlecase}} - {{team.city | titlecase}}</option>
               </select>
             </div>
             <div class="col-sm mb-3">
               <label for="toss_dicision" class="form-label">Toss Dicission</label>
               <select class="form-select" formControlName="toss_dicision">
                 <option selected>Select Toss Dicision</option>
-                <option value="batsman">Batsman</option>
-                <option value="bowler">Bowler</option>
+                <option value="bating">Bating</option>
+                <option value="filding">Filding</option>
               </select>
             </div>
           </div>
@@ -88,61 +79,21 @@
       aria-describedby="alt_pagination_info">
       <thead>
         <tr>
-          <th class="sorting sorting_asc" tabindex="0" aria-controls="alt_pagination" rowspan="1" colspan="1"
-            aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 194.547px;">Name
-          </th>
-          <th class="sorting" tabindex="0" aria-controls="alt_pagination" rowspan="1" colspan="1"
-            aria-label="Position: activate to sort column ascending" style="width: 320.266px;">Position</th>
-          <th class="sorting" tabindex="0" aria-controls="alt_pagination" rowspan="1" colspan="1"
-            aria-label="Office: activate to sort column ascending" style="width: 143.953px;">Office</th>
-          <th class="sorting" tabindex="0" aria-controls="alt_pagination" rowspan="1" colspan="1"
-            aria-label="Age: activate to sort column ascending" style="width: 62.7031px;">Age</th>
-          <th class="sorting" tabindex="0" aria-controls="alt_pagination" rowspan="1" colspan="1"
-            aria-label="Start date: activate to sort column ascending" style="width: 132.625px;">Start date</th>
-          <th class="sorting" tabindex="0" aria-controls="alt_pagination" rowspan="1" colspan="1"
-            aria-label="Salary: activate to sort column ascending" style="width: 126.906px;">Salary</th>
+          <th>Match</th>
+          <th>No.Of.Overs</th>
+          <th>Start At</th>
+          <th>End At</th>
+          <th>Toss Winner Team</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="odd">
-          <td class="sorting_1">Airi Satou</td>
-          <td>Accountant</td>
-          <td>Tokyo</td>
-          <td>33</td>
-          <td>2008/11/28</td>
-          <td>$162,700</td>
-        </tr>
-        <tr class="even">
-          <td class="sorting_1">Angelica Ramos</td>
-          <td>Chief Executive Officer (CEO)</td>
-          <td>London</td>
-          <td>47</td>
-          <td>2009/10/09</td>
-          <td>$1,200,000</td>
-        </tr>
-        <tr class="odd">
-          <td class="sorting_1">Ashton Cox</td>
-          <td>Junior Technical Author</td>
-          <td>San Francisco</td>
-          <td>66</td>
-          <td>2009/01/12</td>
-          <td>$86,000</td>
-        </tr>
-        <tr class="even">
-          <td class="sorting_1">Bradley Greer</td>
-          <td>Software Engineer</td>
-          <td>London</td>
-          <td>41</td>
-          <td>2012/10/13</td>
-          <td>$132,000</td>
-        </tr>
-        <tr class="odd">
-          <td class="sorting_1">Brenden Wagner</td>
-          <td>Software Engineer</td>
-          <td>San Francisco</td>
-          <td>28</td>
-          <td>2011/06/07</td>
-          <td>$206,850</td>
+        <tr *ngFor="let match of matches">
+          <td>{{match.team1.name +'-'+ match.team1.city | titlecase}} VS {{match.team2.name +'-'+ match.team2.city | titlecase}}</td>
+          <td>{{match.number_of_overs}} Overs</td>
+          <td>{{match.start_at | date: 'MMM d, y, h:mm:ss a'}}</td>
+          <td>{{match.end_at ?? '-' }}</td>
+          <td>{{match.toss_winer_team.name +'-'+ match.toss_winer_team.city | titlecase}}</td>
         </tr>
       </tbody>
     </table>

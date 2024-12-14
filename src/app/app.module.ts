@@ -12,6 +12,7 @@ import { SidebarComponent } from './common/sidebar/sidebar.component';
 import { HeaderComponent } from './common/header/header.component';
 import { CenterTableComponent } from './common/center-table/center-table.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

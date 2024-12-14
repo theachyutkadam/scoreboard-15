@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Route, Router } from '@angular/router';
+import { HttpService } from 'src/app/connections/http.service';
 
 @Component({
   selector: 'app-login',
@@ -11,28 +12,31 @@ export class LoginComponent {
   login_form!: FormGroup
 
   form_fields = {
-    username: ['', Validators.required],
+    email: ['', Validators.required],
     password: ['', Validators.required]
   }
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private http: HttpService
   ){}
 
   ngOnInit() { this.initializeForm() }
   initializeForm(){ this.login_form = this.fb.group(this.form_fields) }
 
   setPayload(form: any){
-    let payload = { "username" : form.username, "password" : form.password}
+    let payload = { "email" : form.email, "password" : form.password}
     return payload
   }
 
   login(){
-    // this.setPayload(this.login_form.controls)
-    console.log('Log--->', this.setPayload(this.login_form.value));
-    sessionStorage.setItem("authToken", "6s54d6f54s6d5f6s5d4f65s4df")
-    this.router.navigateByUrl('/')
-    // this.authService.login(this.setPayload(this.login_form.value))
+    this.http.post('users/login', this.setPayload(this.login_form.value)).subscribe((response: any) => {
+      console.log('login--->', response);
+      if(response.status == 200){
+        sessionStorage.setItem("authToken", "6s54d6f54s6d5f6s5d4f65s4df")
+        this.router.navigateByUrl('/')
+      }
+    })
   }
 }

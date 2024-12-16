@@ -4,7 +4,7 @@
       <div class="card-body">
         <form [formGroup]="match_form" class="form-floating" (ngSubmit)="saveMatches()">
           <button type="submit" class="btn btn-sm btn-warning float-end" (click)="resert()">Reset</button>
-          <button type="submit" class="btn btn-sm btn-primary float-end mr-50" [disabled]="match_form.invalid">Submit</button>
+          <button type="submit" class="btn btn-sm btn-primary float-end" style="margin-right: 10px;" [disabled]="match_form.invalid">Submit</button>
           <h5 class="card-title fw-semibold mb-4">{{form_type}} Match</h5>
           <div class="row">
             <div class="col-sm mb-3">

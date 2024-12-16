@@ -48,6 +48,9 @@ export class LoginComponent {
     this.http.post('users/login', this.setPayload(this.login_form.value)).subscribe((response: any) => {
       console.log('login--->', response);
       response.status == 200 ? this.afterLogin(response) : this.error(response)
+    }, (err: any) => {
+      console.error(err)
+      this.toastr.error(err.message, 'Error!');
     })
   }
 

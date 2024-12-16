@@ -14,6 +14,17 @@ export class TeamsComponent {
   action_url = "teams"
   players: any
   teams: any
+  team_form_tags: any
+
+  form_fields = {
+    name: ['', Validators.required],
+    state: [''],
+    city: ['', Validators.required],
+    location: [''],
+    contact: ['', Validators.required],
+    captain_id: ['', Validators.required],
+    vice_captain_id: [''],
+  }
 
   constructor( private http: HttpService ){}
   ngOnInit(){
@@ -24,6 +35,7 @@ export class TeamsComponent {
   getPlayers(){
     this.http.get('players', '').subscribe((response: any) => {
       this.players = response.players
+      this.setupPageTags()
     })
   }
 
@@ -33,27 +45,18 @@ export class TeamsComponent {
     })
   }
 
-  form_fields = {
-    name: ['', Validators.required],
-    // status: [''],
-    state: [''],
-    city: ['', Validators.required],
-    location: [''],
-    contact: ['', Validators.required],
-    captain_id: ['', Validators.required],
-    vice_captain_id: [''],
+  setupPageTags(){
+    this.team_form_tags = [
+      { type: 'text', is_required: true, label: 'Name' , form_control_name: 'name' },
+      // { type: 'text', is_required: false, label: 'Name' , form_control_name: 'status' },
+      { type: 'text', is_required: false, label: 'State' , form_control_name: 'state' },
+      { type: 'text', is_required: true, label: 'City' , form_control_name: 'city' },
+      { type: 'text', is_required: false, label: 'Location' , form_control_name: 'location' },
+      { type: 'text', is_required: true, label: 'Contact' , form_control_name: 'contact' },
+      { type: 'select', is_required: true, label: 'Captain' , form_control_name: 'captain_id', dropdown: this.players },
+      { type: 'select', is_required: false, label: 'Vice Captain' , form_control_name: 'vice_captain_id', dropdown: this.players },
+    ]
   }
-
-  team_form_tags = [
-    { type: 'text', is_required: true, label: 'Name' , form_control_name: 'name' },
-    // { type: 'text', is_required: false, label: 'Name' , form_control_name: 'status' },
-    { type: 'text', is_required: false, label: 'State' , form_control_name: 'state' },
-    { type: 'text', is_required: true, label: 'City' , form_control_name: 'city' },
-    { type: 'text', is_required: false, label: 'Location' , form_control_name: 'location' },
-    { type: 'text', is_required: true, label: 'Contact' , form_control_name: 'contact' },
-    { type: 'select', is_required: true, label: 'Captain' , form_control_name: 'captain_id' },
-    { type: 'select', is_required: false, label: 'Vice Captain' , form_control_name: 'vice_captain_id' },
-  ]
 
   edit_team = {
     // "company_name": "KTM",

@@ -16,7 +16,7 @@ export class MatchesComponent {
   edit_match = ""
   teams: any
   matches: any
-
+  match_form_tags: any
   match_form!: FormGroup
 
   constructor(
@@ -25,6 +25,7 @@ export class MatchesComponent {
     private route: ActivatedRoute,
     private toastr: ToastrService,
   ) {}
+
 
   form_fields = {
     team1_id: ['', Validators.required],
@@ -36,17 +37,6 @@ export class MatchesComponent {
     number_of_overs: ['', Validators.required],
     is_draw: [''],
   }
-
-  match_form_tags = [
-    { type: 'select', is_required: true, label: 'Team1' , form_control_name: 'team1_id' },
-    { type: 'select', is_required: true, label: 'Team2' , form_control_name: 'team2_id' },
-    { type: 'datetime-local', is_required: true, label: 'Start At' , form_control_name: 'start_at' },
-    { type: 'datetime-local', is_required: true, label: 'End At' , form_control_name: 'end_at' },
-    { type: 'select', is_required: true, label: 'Toss Winer Team' , form_control_name: 'toss_winer_team_id' },
-    { type: 'text', is_required: true, label: 'Toss Dicision' , form_control_name: 'toss_dicision' },
-    { type: 'text', is_required: true, label: 'Number Of Overs' , form_control_name: 'number_of_overs' },
-    { type: 'checkbox', is_required: false, label: 'Is Draw' , form_control_name: 'is_draw' },
-  ]
 
   ngOnInit() {
     this.initializeForm()
@@ -69,7 +59,21 @@ export class MatchesComponent {
   getTeams(){
     this.http.get('teams', '').subscribe((response: any) => {
       this.teams = response.teams
+      this.setupPageTags()
     })
+  }
+
+  setupPageTags(){
+    this.match_form_tags = [
+      { type: 'select', is_required: true, label: 'Team1' , form_control_name: 'team1_id', dropdown: this!.teams},
+      { type: 'select', is_required: true, label: 'Team2' , form_control_name: 'team2_id', dropdown: this!.teams},
+      { type: 'datetime-local', is_required: true, label: 'Start At' , form_control_name: 'start_at' },
+      { type: 'datetime-local', is_required: true, label: 'End At' , form_control_name: 'end_at' },
+      { type: 'select', is_required: true, label: 'Toss Winer Team' , form_control_name: 'toss_winer_team_id', dropdown: this!.teams},
+      { type: 'text', is_required: true, label: 'Toss Dicision' , form_control_name: 'toss_dicision' },
+      { type: 'text', is_required: true, label: 'Number Of Overs' , form_control_name: 'number_of_overs' },
+      { type: 'checkbox', is_required: false, label: 'Is Draw' , form_control_name: 'is_draw' },
+    ]
   }
 
   setPayload(form: any){

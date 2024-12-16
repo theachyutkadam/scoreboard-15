@@ -76,11 +76,10 @@
   </div>
 </div> -->
 
-<app-center-form
+<app-center-form *ngIf="teams"
   [form_fields_validation]="form_fields"
   [center_form_tags]="match_form_tags"
   [action_url]="action_url"
-  [dropdown]="teams"
   [form_title]="form_title"
   [edit]="edit_match">
 </app-center-form>

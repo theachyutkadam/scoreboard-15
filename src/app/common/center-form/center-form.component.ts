@@ -16,7 +16,6 @@ export class CenterFormComponent {
   @Input() center_form_tags: any
   @Input() form_title: any
   @Input() action_url: any
-  @Input() dropdown: any
   @Input() edit: any
 
   input_options = ['text', 'date', 'datetime-local', 'password', 'email', 'number']
@@ -28,7 +27,6 @@ export class CenterFormComponent {
 
   ngOnInit() {
     this.initializeForm()
-    console.log('center form called--->', this.edit);
     if(this.edit){ this.editForm(this.edit) }
   }
 
@@ -37,7 +35,6 @@ export class CenterFormComponent {
 
   editForm(object: any){
     this.center_form.patchValue(object)
-    console.log('Edit Object--->', object);
   }
 
   saveForm(){ console.log('Log--->', this.center_form.value) }

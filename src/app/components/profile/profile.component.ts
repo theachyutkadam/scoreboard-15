@@ -13,6 +13,19 @@ export class ProfileComponent {
   action_url = "users"
   edit_user: any
 
+  // dropdowns
+  genders = [
+    {"id": 'male', "name": 'Male'},
+    {"id": 'female', "name": 'female'},
+    {"id": 'other', "name": 'Other'},
+  ]
+
+  specialities = [
+    {"id": 'bowler', "name": 'Bowler'},
+    {"id": 'batsman', "name": 'Batsman'},
+    {"id": 'filder', "name": 'Filder'},
+  ]
+
   form_fields = {
     email: ['', Validators.required],
     // password: ['', Validators.required],
@@ -33,9 +46,9 @@ export class ProfileComponent {
     { type: 'text', is_required: false, label: 'Middle Name' , form_control_name: 'middle_name' },
     { type: 'text', is_required: true, label: 'Last Name' , form_control_name: 'last_name' },
     { type: 'text', is_required: true, label: 'Contact' , form_control_name: 'contact' },
-    { type: 'text', is_required: true, label: 'Gender' , form_control_name: 'gender' },
     { type: 'date', is_required: true, label: 'Birth Date' , form_control_name: 'birth_date' },
-    { type: 'text', is_required: true, label: 'Speciality' , form_control_name: 'speciality' },
+    { type: 'select', is_required: true, label: 'Gender' , form_control_name: 'gender', dropdown: this.genders},
+    { type: 'select', is_required: true, label: 'Speciality' , form_control_name: 'speciality', dropdown: this.specialities}
   ]
 
   constructor( private http: HttpService ){}
@@ -58,7 +71,5 @@ export class ProfileComponent {
       "birth_date": response.birth_date,
       "speciality": response.speciality,
     }
-    console.log('object making done-->', this.edit_user);
   }
-
 }

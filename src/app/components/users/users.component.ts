@@ -14,6 +14,18 @@ export class UsersComponent {
   players: any
   users: any
 
+  // dropdowns
+  genders = [
+    {"id": 'male', "name": 'Male'},
+    {"id": 'female', "name": 'female'},
+    {"id": 'other', "name": 'Other'},
+  ]
+  specialities = [
+    {"id": 'bowler', "name": 'Bowler'},
+    {"id": 'batsman', "name": 'Batsman'},
+    {"id": 'filder', "name": 'Filder'},
+  ]
+
   constructor( private http: HttpService ){}
   ngOnInit(){ this.getPlayers() }
 
@@ -44,9 +56,9 @@ export class UsersComponent {
     // { type: 'password', is_required: true, label: 'Password' , form_control_name: 'password' },
 
     { type: 'text', is_required: true, label: 'Contact' , form_control_name: 'contact' },
-    { type: 'text', is_required: true, label: 'Gender' , form_control_name: 'gender' },
     { type: 'date', is_required: true, label: 'Birth Date' , form_control_name: 'birth_date' },
-    { type: 'text', is_required: true, label: 'Speciality' , form_control_name: 'speciality' },
+    { type: 'select', is_required: true, label: 'Gender' , form_control_name: 'gender', dropdown: this.genders },
+    { type: 'select', is_required: true, label: 'Speciality' , form_control_name: 'speciality', dropdown: this.specialities},
   ]
 
   edit_user = {}

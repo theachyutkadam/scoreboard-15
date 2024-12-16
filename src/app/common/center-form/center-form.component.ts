@@ -28,11 +28,17 @@ export class CenterFormComponent {
 
   ngOnInit() {
     this.initializeForm()
+    console.log('center form called--->', this.edit);
     if(this.edit){ this.editForm(this.edit) }
   }
 
   reset(){ this.initializeForm() }
   initializeForm() {this.center_form = this.fb.group(this.form_fields_validation)}
-  editForm(object: any){ this.center_form.patchValue(object) }
+
+  editForm(object: any){
+    this.center_form.patchValue(object)
+    console.log('Edit Object--->', object);
+  }
+
   saveForm(){ console.log('Log--->', this.center_form.value) }
 }

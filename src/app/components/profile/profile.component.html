@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<!-- <div class="container-fluid">
   <div class="container-fluid">
     <div class="card">
       <div class="card-body">
@@ -38,7 +38,6 @@
                     <option value="bowler">Bowler</option>
                     <option value="filder">Filder</option>
                   </select>
-                  <!-- <input type="text" class="form-control" id="specitality"> -->
                 </div>
               </div>
 
@@ -62,4 +61,13 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+<app-center-form *ngIf="edit_user"
+  [form_fields_validation]="form_fields"
+  [center_form_tags]="user_form_tags"
+  [action_url]="action_url"
+  [dropdown]=""
+  [form_title]="form_title"
+  [edit]="edit_user">
+</app-center-form>

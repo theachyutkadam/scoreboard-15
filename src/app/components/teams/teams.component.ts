@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { HttpService } from 'src/app/connections/http.service';
 
 @Component({
   selector: 'app-teams',
@@ -8,35 +10,49 @@ import { Validators } from '@angular/forms';
 })
 export class TeamsComponent {
   form_title = "Teams"
+  players: any
+  // vehicle_types = [
+  //   { name: '2 Wheeler', code: '2w' },
+  //   { name: '4 Wheeler', code: '4w' },
+  //   { name: 'Truck', code: 'truck' },
+  //   { name: 'Tempo', code: 'tempo' },
+  //   { name: 'Mopet', code: 'mopet' },
+  // ];
 
-  vehicle_types = [
-    { name: '2 Wheeler', code: '2w' },
-    { name: '4 Wheeler', code: '4w' },
-    { name: 'Truck', code: 'truck' },
-    { name: 'Tempo', code: 'tempo' },
-    { name: 'Mopet', code: 'mopet' },
-  ];
+  constructor(
+    private http: HttpService,
+    // private route: ActivatedRoute,
+  ) {}
+
+  ngOnInit() { this.getTeams()}
+
+  getTeams(){
+    this.http.get('players', '').subscribe((response: any) => {
+      this.players = response.players
+      console.log('Log---player>', this.players[0]);
+    })
+  }
 
   form_fields = {
-    company_name: ['', Validators.required],
     name: ['', Validators.required],
-    color: ['', Validators.required],
-    number: ['', Validators.required],
-    engine_in_cc: ['', Validators.required],
-    top_speed: [''],
-    type: ['', Validators.required],
-    purchase_date: [''],
+    // status: [''],
+    state: [''],
+    city: ['', Validators.required],
+    location: [''],
+    contact: ['', Validators.required],
+    captain_id: ['', Validators.required],
+    vice_captain_id: [''],
   }
 
   team_form_fields = [
-    { type: 'text', is_required: true, label: 'Company Name' , form_control_name: 'company_name' },
     { type: 'text', is_required: true, label: 'Name' , form_control_name: 'name' },
-    { type: 'date', is_required: false, label: 'Purchase Date' , form_control_name: 'purchase_date' },
-    { type: 'text', is_required: true, label: 'Color' , form_control_name: 'color' },
-    { type: 'text', is_required: true, label: 'Number' , form_control_name: 'number' },
-    { type: 'number', is_required: true, label: 'Engine In CC' , form_control_name: 'engine_in_cc' },
-    { type: 'number', is_required: false, label: 'Top Speed' , form_control_name: 'top_speed' },
-    { type: 'select', is_required: true, label: 'Type' , form_control_name: 'type' },
+    // { type: 'text', is_required: false, label: 'Name' , form_control_name: 'status' },
+    { type: 'text', is_required: false, label: 'State' , form_control_name: 'state' },
+    { type: 'text', is_required: true, label: 'City' , form_control_name: 'city' },
+    { type: 'text', is_required: false, label: 'Location' , form_control_name: 'location' },
+    { type: 'text', is_required: true, label: 'Contact' , form_control_name: 'contact' },
+    { type: 'select', is_required: true, label: 'Captain' , form_control_name: 'captain_id' },
+    { type: 'select', is_required: false, label: 'Vice Captain' , form_control_name: 'vice_captain_id' },
   ]
 
   edit_team = {

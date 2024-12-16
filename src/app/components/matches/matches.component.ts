@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { HttpService } from 'src/app/connections/http.service';
 
 @Component({
@@ -22,6 +23,7 @@ export class MatchesComponent {
     private fb: FormBuilder,
     private http: HttpService,
     private route: ActivatedRoute,
+    private toastr: ToastrService,
   ) {}
 
   form_fields = {
@@ -58,6 +60,9 @@ export class MatchesComponent {
   getMatches(){
     this.http.get('matches', '').subscribe((response: any) => {
       this.matches = response.matches
+    }, (err: any) => {
+      console.error(err)
+      this.toastr.error(err.message, 'Error!');
     })
   }
 

@@ -10,9 +10,11 @@ import { HttpService } from 'src/app/connections/http.service';
 })
 export class MatchesComponent {
   form_type = "New"
+  form_title = "Match"
+  edit_match = ""
   teams: any
   matches: any
-  // match_filter: string = 'upcomming'
+
   match_form!: FormGroup
 
   constructor(
@@ -22,20 +24,31 @@ export class MatchesComponent {
   ) {}
 
   form_fields = {
-    team1: ['', Validators.required],
-    team2: ['', Validators.required],
+    team1_id: ['', Validators.required],
+    team2_id: ['', Validators.required],
     start_at: ['', Validators.required],
     end_at: [''],
-    toss_winer_team: ['', Validators.required],
+    toss_winer_team_id: ['', Validators.required],
     toss_dicision: ['', Validators.required],
     number_of_overs: ['', Validators.required],
     is_draw: [''],
   }
 
+  match_form_fields = [
+    { type: 'select', is_required: true, label: 'Team1' , form_control_name: 'team1_id' },
+    { type: 'select', is_required: true, label: 'Team2' , form_control_name: 'team2_id' },
+    { type: 'datetime-local', is_required: true, label: 'Start At' , form_control_name: 'start_at' },
+    { type: 'datetime-local', is_required: true, label: 'End At' , form_control_name: 'end_at' },
+    { type: 'select', is_required: true, label: 'Toss Winer Team' , form_control_name: 'toss_winer_team_id' },
+    { type: 'text', is_required: true, label: 'Toss Dicision' , form_control_name: 'toss_dicision' },
+    { type: 'text', is_required: true, label: 'Number Of Overs' , form_control_name: 'number_of_overs' },
+    { type: 'checkbox', is_required: false, label: 'Is Draw' , form_control_name: 'is_draw' },
+  ]
+
   ngOnInit() {
-    this.getMatches()
     this.initializeForm()
     this.getTeams()
+    this.getMatches()
   }
 
   resert(){ this.initializeForm() }

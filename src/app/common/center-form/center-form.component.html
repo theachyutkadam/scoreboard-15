@@ -1,65 +1,75 @@
-<h3 class="mb-4">{{form_title}}</h3>
-<form class="col-lg-12" [formGroup]="center_form" (ngSubmit)="saveForm()">
-  <div class="row input-group mb-3">
-    <div class="col-lg-6" *ngFor="let field of center_form_fields">
-      <label for="street" class="col-form-label">{{field.label}}
-        <span class="error-message" *ngIf="field.is_required">*</span>
-      </label>
 
-      <!-- <div *ngIf="field.type == 'checkbox'">
-                <input [attr.type]="field.type" [formControlName]="field.form_control_name"
-                  [attr.placeholder]="field.label" [checked]="center_form.get(field.form_control_name).value">
+<div class="container-fluid">
+  <div class="card-body">
+    <div class="card">
+      <div class="card-body">
+        <form class="col-lg-12" [formGroup]="center_form" (ngSubmit)="saveForm()">
+          <button type="submit" class="btn btn-sm btn-warning float-end" (click)="reset()">Reset</button>
+          <button type="submit" class="btn btn-sm btn-primary float-end" style="margin-right: 10px;" [disabled]="center_form.invalid">Submit</button>
+          <h5 class="card-title fw-semibold mb-4">{{form_title}}</h5>
+          <div class="row input-group mb-3">
+            <div class="col-lg-3" *ngFor="let field of center_form_fields">
+              <label class="col-form-label" [for]="field.form_control_name">{{field.label}}
+                <span class="error-message" *ngIf="field.is_required">*</span>
+              </label>
+
+              <div *ngIf="field.type == 'checkbox'">
+                <input [attr.type]="field.type" class="form-check-input" [formControlName]="field.form_control_name"
+                  [id]="field.form_control_name">
                 <div
                   *ngIf="center_form.get(field.form_control_name)?.touched && center_form.get(field.form_control_name)?.invalid && field.is_required">
                   <small class="error-message" *ngIf="center_form.get(field.form_control_name)?.errors?.['required']">
                     {{field.label}} is required.
                   </small>
                 </div>
-              </div> -->
-      <div *ngIf="field.type == 'radio'">
-        <div *ngFor="let option of field.options; index as i">
-          <input [attr.type]="field.type" [attr.name]="field.form_control_name"
-            [formControlName]="field.form_control_name" id="{{option.value+i}}" [value]="option.value"
-            [checked]="center_form.get(field.form_control_name).value == 'yes' ? true : false">
-          <label for="{{option.value+i}}">{{option.name}}</label>
-        </div>
-        <div
-          *ngIf="center_form.get(field.form_control_name)?.touched && center_form.get(field.form_control_name)?.invalid && field.is_required">
-          <small class="error-message" *ngIf="center_form.get(field.form_control_name)?.errors?.['required']">
-            {{field.label}} is required.
-          </small>
-        </div>
-      </div>
+              </div>
 
-      <div *ngIf="input_options.includes(field.type)">
-        <input [attr.type]="field.type" [formControlName]="field.form_control_name" [attr.placeholder]="field.label"
-          class="form-control">
-        <div
-          *ngIf="center_form.get(field.form_control_name)?.touched && center_form.get(field.form_control_name)?.invalid && field.is_required">
-          <small class="error-message" *ngIf="center_form.get(field.form_control_name)?.errors?.['required']">
-            {{field.label}} is required.
-          </small>
-        </div>
-      </div>
+              <div *ngIf="field.type == 'radio'">
+                <div *ngFor="let option of field.options; index as i">
+                  <input [attr.type]="field.type" [attr.name]="field.form_control_name"
+                    [formControlName]="field.form_control_name" id="{{option.value+i}}" [value]="option.value"
+                    [checked]="center_form.get(field.form_control_name).value == 'yes' ? true : false">
+                  <label for="{{option.value+i}}">{{option.name}}</label>
+                </div>
+                <div
+                  *ngIf="center_form.get(field.form_control_name)?.touched && center_form.get(field.form_control_name)?.invalid && field.is_required">
+                  <small class="error-message" *ngIf="center_form.get(field.form_control_name)?.errors?.['required']">
+                    {{field.label}} is required.
+                  </small>
+                </div>
+              </div>
 
-      <div *ngIf="field.type == 'select' ">
-        <select class="form-control" [formControlName]="field.form_control_name">
-          <option value="">Select {{field.label}}</option>
-          <option *ngFor="let object of dropdown" [value]="object.id">
-            {{ object.full_name }}
-          </option>
-        </select>
-        <div
-          *ngIf="center_form.get(field.form_control_name)?.touched && center_form.get(field.form_control_name)?.invalid && field.is_required">
-          <small class="error-message" *ngIf="center_form.get(field.form_control_name)?.errors?.['required']">
-            {{field.label}} is required.
-          </small>
-        </div>
+              <div *ngIf="input_options.includes(field.type)">
+                <input [attr.type]="field.type" [formControlName]="field.form_control_name" [attr.placeholder]="field.label"
+                  class="form-control">
+                <div
+                  *ngIf="center_form.get(field.form_control_name)?.touched && center_form.get(field.form_control_name)?.invalid && field.is_required">
+                  <small class="error-message" *ngIf="center_form.get(field.form_control_name)?.errors?.['required']">
+                    {{field.label}} is required.
+                  </small>
+                </div>
+              </div>
+
+              <div *ngIf="field.type == 'select' ">
+                <select class="form-control" [formControlName]="field.form_control_name">
+                  <option value="">Select {{field.label}}</option>
+                  <option *ngFor="let object of dropdown" [value]="object.id">
+                    {{ object.name }}
+                  </option>
+                </select>
+                <div
+                  *ngIf="center_form.get(field.form_control_name)?.touched && center_form.get(field.form_control_name)?.invalid && field.is_required">
+                  <small class="error-message" *ngIf="center_form.get(field.form_control_name)?.errors?.['required']">
+                    {{field.label}} is required.
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <button type="submit" class="btn btn-sm btn-warning float-end" (click)="reset()">Reset</button>
+          <button type="submit" class="btn btn-sm btn-primary float-end" style="margin-right: 10px;" [disabled]="center_form.invalid">Submit</button> -->
+        </form>
       </div>
     </div>
   </div>
-  <div class="input-group mb-3">
-    <button type="submit" class="btn btn-primary" [disabled]="center_form.invalid">Save</button>
-    <button type="submit" class="btn btn-warning" (click)="editForm('')">Edit</button>
-  </div>
-</form>
+</div>

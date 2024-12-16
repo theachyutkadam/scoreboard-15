@@ -32,12 +32,12 @@ export class CenterFormComponent {
     }
   }
 
-  initializeForm() {
-    this.center_form = this.fb.group(this.form_fields_validation)
-  }
+  reset(){ this.initializeForm() }
+  initializeForm() {this.center_form = this.fb.group(this.form_fields_validation)}
 
   saveForm(){
     console.log('Log--->', this.center_form.value);
+    console.log('Log-is_draw-->', this.center_form.value.is_draw);
   }
 
   editForm(object: any){

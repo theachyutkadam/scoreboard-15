@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<!-- <div class="container-fluid">
   <div class="card-body">
     <div class="card">
       <div class="card-body">
@@ -9,37 +9,34 @@
           <div class="row">
             <div class="col-sm mb-3">
               <label for="team1" class="form-label">Team1</label>
-              <select class="form-select" formControlName="team1">
-                <option selected>Select Team1</option>
+              <select class="form-control" formControlName="team1">
+                <option value="">Select Team1</option>
                 <option *ngFor="let team of teams" [value]="team.id">{{team.name | titlecase}} - {{team.city | titlecase}}</option>
               </select>
               <div *ngIf="match_form.get('team1')?.touched && match_form.get('team1')?.invalid">
                 <small *ngIf="match_form.get('team1')?.errors?.['required']" class="error-message">
                   Team1 is required.
                 </small>
-                <!-- <small class="error-message" *ngIf="match_form.get('team1')?.errors?.['required']">
-                  Team1 is required.
-                </small> -->
               </div>
             </div>
             <div class="col-sm mb-3">
               <label for="team2" class="form-label">Team2</label>
-              <select class="form-select" formControlName="team2">
-                <option selected>Select Team2</option>
+              <select class="form-control" formControlName="team2">
+                <option value="">Select Team2</option>
                 <option *ngFor="let team of teams" [value]="team.id">{{team.name | titlecase}} - {{team.city | titlecase}}</option>
               </select>
             </div>
             <div class="col-sm mb-3">
               <label for="toss_winer_team" class="form-label">Toss Winner Team</label>
-              <select class="form-select" formControlName="toss_winer_team">
-                <option selected>Select Toss Winner Team</option>
+              <select class="form-control" formControlName="toss_winer_team">
+                <option value="">Select Toss Winner Team</option>
                 <option *ngFor="let team of teams" [value]="team.id">{{team.name | titlecase}} - {{team.city | titlecase}}</option>
               </select>
             </div>
             <div class="col-sm mb-3">
               <label for="toss_dicision" class="form-label">Toss Dicission</label>
-              <select class="form-select" formControlName="toss_dicision">
-                <option selected>Select Toss Dicision</option>
+              <select class="form-control" formControlName="toss_dicision">
+                <option value="">Select Toss Dicision</option>
                 <option value="bating">Bating</option>
                 <option value="filding">Filding</option>
               </select>
@@ -56,8 +53,8 @@
             </div>
             <div class="col-sm mb-3">
               <label for="number_of_overs" class="form-label">Number Of Overs</label>
-              <select class="form-select" formControlName="number_of_overs">
-                <option selected>Select Overs</option>
+              <select class="form-control" formControlName="number_of_overs">
+                <option value="">Select Overs</option>
                 <option value="3">3 Overs</option>
                 <option value="5">5 Overs</option>
                 <option value="7">7 Overs</option>
@@ -77,8 +74,15 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
+<app-center-form
+  [form_fields_validation]="form_fields"
+  [center_form_fields]="match_form_fields"
+  [dropdown]="teams"
+  [form_title]="form_title"
+  [edit]="edit_match">
+</app-center-form>
 
 <div class="table-responsive">
   <div id="alt_pagination_wrapper" class="dataTables_wrapper">

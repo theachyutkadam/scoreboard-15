@@ -4,7 +4,7 @@
       <div class="card-body">
         <form [formGroup]="match_form" class="form-floating" (ngSubmit)="saveMatches()">
           <button type="submit" class="btn btn-sm btn-warning float-end" (click)="resert()">Reset</button>
-          <button type="submit" class="btn btn-sm btn-primary float-end">Submit</button>
+          <button type="submit" class="btn btn-sm btn-primary float-end mr-50" [disabled]="match_form.invalid">Submit</button>
           <h5 class="card-title fw-semibold mb-4">{{form_type}} Match</h5>
           <div class="row">
             <div class="col-sm mb-3">
@@ -13,6 +13,14 @@
                 <option selected>Select Team1</option>
                 <option *ngFor="let team of teams" [value]="team.id">{{team.name | titlecase}} - {{team.city | titlecase}}</option>
               </select>
+              <div *ngIf="match_form.get('team1')?.touched && match_form.get('team1')?.invalid">
+                <small *ngIf="match_form.get('team1')?.errors?.['required']" class="error-message">
+                  Team1 is required.
+                </small>
+                <!-- <small class="error-message" *ngIf="match_form.get('team1')?.errors?.['required']">
+                  Team1 is required.
+                </small> -->
+              </div>
             </div>
             <div class="col-sm mb-3">
               <label for="team2" class="form-label">Team2</label>
@@ -74,17 +82,16 @@
 
 <div class="table-responsive">
   <div id="alt_pagination_wrapper" class="dataTables_wrapper">
-    <h4><strong> {{match_filter | titlecase}} Matches </strong></h4>
+    <h4><strong> Matches </strong></h4>
     <table id="alt_pagination" class="table table-striped table-bordered display text-nowrap dataTable"
-      aria-describedby="alt_pagination_info">
+    aria-describedby="alt_pagination_info">
       <thead>
         <tr>
           <th>Match</th>
           <th>No.Of.Overs</th>
           <th>Start At</th>
           <th>End At</th>
-          <th>Toss Winner Team</th>
-          <th>Action</th>
+          <th>Status</th>
         </tr>
       </thead>
       <tbody>
@@ -93,7 +100,7 @@
           <td>{{match.number_of_overs}} Overs</td>
           <td>{{match.start_at | date: 'MMM d, y, h:mm:ss a'}}</td>
           <td>{{match.end_at ?? '-' }}</td>
-          <td>{{match.toss_winer_team.name +'-'+ match.toss_winer_team.city | titlecase}}</td>
+          <td>{{match.status | titlecase}}</td>
         </tr>
       </tbody>
     </table>

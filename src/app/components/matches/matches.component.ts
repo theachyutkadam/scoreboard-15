@@ -12,16 +12,14 @@ export class MatchesComponent {
   form_type = "New"
   teams: any
   matches: any
-  match_filter: string = 'upcomming'
+  // match_filter: string = 'upcomming'
   match_form!: FormGroup
 
   constructor(
     private fb: FormBuilder,
     private http: HttpService,
     private route: ActivatedRoute,
-  ) {
-    this.match_filter = this.route.snapshot.paramMap.get('filter') ?? 'upcomming'
-  }
+  ) {}
 
   form_fields = {
     team1: ['', Validators.required],

@@ -1,2 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~ngx-toastr/toastr';
+
+.error-message {
+  color: red;
+}
+
+#main-wrapper[data-layout=vertical][data-header-position=fixed] .body-wrapper>.container-fluid {padding-top: 20px !important;}

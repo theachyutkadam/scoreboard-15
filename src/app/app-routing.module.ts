@@ -19,11 +19,11 @@ const routes: Routes = [
     title:"Profile",
     component: ProfileComponent
   },
-  { path: 'matches/:filter',
+  { path: 'matches',
     title:"Matches",
     component: MatchesComponent
   },
-  { path: 'players/:filter',
+  { path: 'players',
     title:"Players",
     component: MatchesComponent
   },

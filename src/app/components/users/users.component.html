@@ -1,0 +1,39 @@
+<app-center-form
+  [form_fields_validation]="form_fields"
+  [center_form_tags]="user_form_tags"
+  [action_url]="action_url"
+  [dropdown]="players"
+  [form_title]="form_title"
+  [edit]="edit_user">
+</app-center-form>
+
+<div class="table-responsive">
+  <div id="alt_pagination_wrapper" class="dataTables_wrapper">
+    <h4><strong> Users </strong></h4>
+    <table id="alt_pagination" class="table table-striped table-bordered display text-nowrap dataTable"
+    aria-describedby="alt_pagination_info">
+      <thead>
+        <tr>
+          <th>#ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Contact</th>
+          <th>Speciality</th>
+          <th>Gender</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{user.id}}</td>
+          <td>{{user.name | titlecase}}</td>
+          <td>{{user.user.email }}</td>
+          <td>{{user.contact }}</td>
+          <td>{{user.speciality | titlecase }}</td>
+          <td>{{user.gender | titlecase}}</td>
+          <td>{{user.user.status | titlecase}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

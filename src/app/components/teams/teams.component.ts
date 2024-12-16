@@ -26,6 +26,7 @@ export class TeamsComponent {
       this.players = response.players
     })
   }
+
   getTeams(){
     this.http.get('teams', '').subscribe((response: any) => {
       this.teams = response.teams

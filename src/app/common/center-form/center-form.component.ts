@@ -28,21 +28,11 @@ export class CenterFormComponent {
 
   ngOnInit() {
     this.initializeForm()
-    if(this.edit){
-      this.editForm(this.edit)
-    }
+    if(this.edit){ this.editForm(this.edit) }
   }
 
   reset(){ this.initializeForm() }
   initializeForm() {this.center_form = this.fb.group(this.form_fields_validation)}
-
-  saveForm(){
-    console.log('Log--->', this.center_form.value);
-    console.log('Log-is_draw-->', this.center_form.value.is_draw);
-  }
-
-  editForm(object: any){
-    console.log('Log--->', object);
-    this.center_form.patchValue(object)
-  }
+  editForm(object: any){ this.center_form.patchValue(object) }
+  saveForm(){ console.log('Log--->', this.center_form.value) }
 }

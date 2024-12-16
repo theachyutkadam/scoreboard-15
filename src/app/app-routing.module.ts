@@ -5,6 +5,7 @@ import { MatchesComponent } from './components/matches/matches.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { LoginComponent } from './components/login/login.component';
+import { TeamsComponent } from './components/teams/teams.component';
 
 const routes: Routes = [
   { path: 'login',
@@ -18,6 +19,10 @@ const routes: Routes = [
   { path: 'profile',
     title:"Profile",
     component: ProfileComponent
+  },
+  { path: 'teams',
+    title:"Teams",
+    component: TeamsComponent
   },
   { path: 'matches',
     title:"Matches",

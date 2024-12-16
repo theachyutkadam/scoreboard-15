@@ -8,7 +8,7 @@
           <button type="submit" class="btn btn-sm btn-primary float-end" style="margin-right: 10px;" [disabled]="center_form.invalid">Submit</button>
           <h5 class="card-title fw-semibold mb-4">{{form_title}}</h5>
           <div class="row input-group mb-3">
-            <div class="col-lg-3" *ngFor="let field of center_form_fields">
+            <div class="col-lg-3" *ngFor="let field of center_form_tags">
               <label class="col-form-label" [for]="field.form_control_name">{{field.label}}
                 <span class="error-message" *ngIf="field.is_required">*</span>
               </label>

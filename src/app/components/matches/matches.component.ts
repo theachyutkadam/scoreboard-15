@@ -9,8 +9,9 @@ import { HttpService } from 'src/app/connections/http.service';
   styleUrls: ['./matches.component.css']
 })
 export class MatchesComponent {
-  form_type = "New"
   form_title = "Match"
+  form_type = "New"
+  action_url = "matches"
   edit_match = ""
   teams: any
   matches: any
@@ -34,7 +35,7 @@ export class MatchesComponent {
     is_draw: [''],
   }
 
-  match_form_fields = [
+  match_form_tags = [
     { type: 'select', is_required: true, label: 'Team1' , form_control_name: 'team1_id' },
     { type: 'select', is_required: true, label: 'Team2' , form_control_name: 'team2_id' },
     { type: 'datetime-local', is_required: true, label: 'Start At' , form_control_name: 'start_at' },

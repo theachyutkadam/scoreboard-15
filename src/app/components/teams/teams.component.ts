@@ -10,26 +10,25 @@ import { HttpService } from 'src/app/connections/http.service';
 })
 export class TeamsComponent {
   form_title = "Teams"
+  form_type = "New"
+  action_url = "teams"
   players: any
-  // vehicle_types = [
-  //   { name: '2 Wheeler', code: '2w' },
-  //   { name: '4 Wheeler', code: '4w' },
-  //   { name: 'Truck', code: 'truck' },
-  //   { name: 'Tempo', code: 'tempo' },
-  //   { name: 'Mopet', code: 'mopet' },
-  // ];
+  teams: any
 
-  constructor(
-    private http: HttpService,
-    // private route: ActivatedRoute,
-  ) {}
+  constructor( private http: HttpService ){}
+  ngOnInit(){
+    this.getPlayers()
+    this.getTeams()
+  }
 
-  ngOnInit() { this.getTeams()}
-
-  getTeams(){
+  getPlayers(){
     this.http.get('players', '').subscribe((response: any) => {
       this.players = response.players
-      console.log('Log---player>', this.players[0]);
+    })
+  }
+  getTeams(){
+    this.http.get('teams', '').subscribe((response: any) => {
+      this.teams = response.teams
     })
   }
 
@@ -44,7 +43,7 @@ export class TeamsComponent {
     vice_captain_id: [''],
   }
 
-  team_form_fields = [
+  team_form_tags = [
     { type: 'text', is_required: true, label: 'Name' , form_control_name: 'name' },
     // { type: 'text', is_required: false, label: 'Name' , form_control_name: 'status' },
     { type: 'text', is_required: false, label: 'State' , form_control_name: 'state' },

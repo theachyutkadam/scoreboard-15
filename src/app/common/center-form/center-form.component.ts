@@ -12,9 +12,10 @@ export class CenterFormComponent {
   center_form: FormGroup | any
   input_error_message = "Invalid filed"
 
-  @Input() center_form_fields: any
   @Input() form_fields_validation: any
+  @Input() center_form_tags: any
   @Input() form_title: any
+  @Input() action_url: any
   @Input() dropdown: any
   @Input() edit: any
 

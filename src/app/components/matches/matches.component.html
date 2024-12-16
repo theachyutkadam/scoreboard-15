@@ -78,7 +78,8 @@
 
 <app-center-form
   [form_fields_validation]="form_fields"
-  [center_form_fields]="match_form_fields"
+  [center_form_tags]="match_form_tags"
+  [action_url]="action_url"
   [dropdown]="teams"
   [form_title]="form_title"
   [edit]="edit_match">
@@ -91,6 +92,7 @@
     aria-describedby="alt_pagination_info">
       <thead>
         <tr>
+          <th>#ID</th>
           <th>Match</th>
           <th>No.Of.Overs</th>
           <th>Start At</th>
@@ -100,6 +102,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let match of matches">
+          <td>{{match.id }}</td>
           <td>{{match.team1.name +'-'+ match.team1.city | titlecase}} VS {{match.team2.name +'-'+ match.team2.city | titlecase}}</td>
           <td>{{match.number_of_overs}} Overs</td>
           <td>{{match.start_at | date: 'MMM d, y, h:mm:ss a'}}</td>

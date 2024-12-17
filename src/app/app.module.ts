@@ -21,6 +21,7 @@ import { TeamsComponent } from './components/teams/teams.component';
 import { UsersComponent } from './components/users/users.component';
 import { SpinnerComponent } from './common/spinner/spinner.component';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
+import { ScoreComponent } from './components/score/score.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { LoaderInterceptor } from './interceptors/loader.interceptor';
     CenterFormComponent,
     TeamsComponent,
     UsersComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    ScoreComponent
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,7 @@
     <div class="card">
       <div class="card-body">
         <form class="col-lg-12" [formGroup]="center_form" (ngSubmit)="saveForm()">
-          <button type="submit" class="btn btn-sm btn-warning float-end" (click)="reset()">Reset</button>
+          <a class="btn btn-sm btn-warning float-end" (click)="reset()">Reset</a>
           <button type="submit"
             style="margin-right: 10px;"
             class="btn btn-sm btn-primary float-end"
@@ -20,7 +20,7 @@
               </label>
 
               <div *ngIf="field.type == 'checkbox'">
-                <input [attr.type]="field.type" class="form-check-input" [formControlName]="field.form_control_name"
+                <input [attr.type]="field.type" class="form-check-input form-control" [formControlName]="field.form_control_name"
                   [id]="field.form_control_name">
                 <div
                   *ngIf="center_form.get(field.form_control_name)?.touched && center_form.get(field.form_control_name)?.invalid && field.is_required">

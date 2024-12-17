@@ -22,7 +22,6 @@ export class AppComponent {
   ngOnInit() { }
 
   isUserLoggedIn(event: any){
-    console.log('-check route-->', event.url);
     if(sessionStorage.getItem("authToken")){
       this.is_login = true
     } else {

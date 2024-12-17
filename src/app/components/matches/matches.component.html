@@ -97,6 +97,7 @@
           <th>Start At</th>
           <th>End At</th>
           <th>Status</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -107,6 +108,7 @@
           <td>{{match.start_at | date: 'MMM d, y, h:mm:ss a'}}</td>
           <td>{{match.end_at ?? '-' }}</td>
           <td>{{match.status | titlecase}}</td>
+          <td><a routerLink="/match/{{match.id}}/score">ScoreBook</a></td>
         </tr>
       </tbody>
     </table>

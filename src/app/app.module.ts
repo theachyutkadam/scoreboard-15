@@ -12,13 +12,15 @@ import { SidebarComponent } from './common/sidebar/sidebar.component';
 import { HeaderComponent } from './common/header/header.component';
 import { CenterTableComponent } from './common/center-table/center-table.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CenterFormComponent } from './common/center-form/center-form.component';
 import { TeamsComponent } from './components/teams/teams.component';
 import { UsersComponent } from './components/users/users.component';
+import { SpinnerComponent } from './common/spinner/spinner.component';
+import { LoaderInterceptor } from './interceptors/loader.interceptor';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { UsersComponent } from './components/users/users.component';
     CenterTableComponent,
     CenterFormComponent,
     TeamsComponent,
-    UsersComponent
+    UsersComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,13 @@ import { UsersComponent } from './components/users/users.component';
       progressAnimation: 'increasing'
     }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -18,6 +18,10 @@ export class MatchesComponent {
 
   teams: any
   matches: any
+  toss_dicission = [
+    {"id": 'bating', "name": 'Bating'},
+    {"id": 'filding', "name": 'Filding'},
+  ]
 
   constructor(
     // private fb: FormBuilder,
@@ -38,13 +42,9 @@ export class MatchesComponent {
   }
 
   ngOnInit() {
-    // this.initializeForm()
     this.getTeams()
     this.getMatches()
   }
-
-  // resert(){ this.initializeForm() }
-  // initializeForm(){ this.match_form = this.fb.group(this.form_fields) }
 
   getMatches(){
     this.http.get('matches', '').subscribe((response: any) => {
@@ -56,7 +56,8 @@ export class MatchesComponent {
     this.http.get('teams', '').subscribe((response: any) => {
       this.teams = response.teams
       this.setupPageTags()
-    }, (err: any) => {this.apiError(err)})  }
+    }, (err: any) => {this.apiError(err)})
+  }
 
   setupPageTags(){
     this.match_form_tags = [
@@ -65,7 +66,7 @@ export class MatchesComponent {
       { type: 'datetime-local', is_required: true, label: 'Start At' , form_control_name: 'start_at' },
       { type: 'datetime-local', is_required: true, label: 'End At' , form_control_name: 'end_at' },
       { type: 'select', is_required: true, label: 'Toss Winer Team' , form_control_name: 'toss_winer_team_id', dropdown: this!.teams},
-      { type: 'text', is_required: true, label: 'Toss Dicision' , form_control_name: 'toss_dicision' },
+      { type: 'select', is_required: true, label: 'Toss Dicision' , form_control_name: 'toss_dicision', dropdown: this.toss_dicission },
       { type: 'text', is_required: true, label: 'Number Of Overs' , form_control_name: 'number_of_overs' },
       { type: 'checkbox', is_required: false, label: 'Is Draw' , form_control_name: 'is_draw' },
     ]
@@ -73,24 +74,24 @@ export class MatchesComponent {
 
   setPayload(form: any){
     let payload = {
-      "team1_id":           parseInt(form.team1_id),
-      "team2_id":           parseInt(form.team2_id),
-      "toss_winer_team_id": parseInt(form.toss_winer_team_id),
+      "team1_id":           form.team1_id,
+      "team2_id":           form.team2_id,
+      "toss_winer_team_id": form.toss_winer_team_id,
       "toss_dicision":   form.toss_dicision,
       "start_at":        form.start_at,
       "end_at":          form.end_at,
-      "number_of_overs": parseInt(form.number_of_overs),
+      "number_of_overs": form.number_of_overs,
       "is_draw":         form.is_draw,
     }
-    return payload
+    this.saveMatches(payload)
   }
 
-  saveMatches() {
-    console.warn('Wrn--->', this.setPayload(this.match_form.value));
-    this.http.post('matches', this.setPayload(this.match_form.value)).subscribe((response: any) => {
-      console.log('Log--->', response);
+  saveMatches(payload: any) {
+    this.http.post('matches', payload).subscribe((response: any) => {
       this.getMatches()
-    })
+      this.edit_match = null
+      this.toastr.success("Match Created", 'Success!');
+    }, (err: any) => {this.apiError(err)})
   }
 
   editMatch(match_id: any){

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpService } from 'src/app/connections/http.service';
@@ -18,6 +18,9 @@ export class CenterFormComponent {
   @Input() form_title: any
   @Input() action_url: any
   @Input() edit: any
+
+  @Output() formData = new EventEmitter<any>()
+  // @Output(“parentFun”) parentFun: EventEmitter<any> = new EventEmitter();
 
   input_options = ['text', 'date', 'datetime-local', 'password', 'email', 'number']
   constructor(
@@ -49,13 +52,5 @@ export class CenterFormComponent {
 
   initializeForm() {this.center_form = this.fb.group(this.form_fields_validation)}
   editForm(object: any){ this.center_form.patchValue(object) }
-
-  saveForm(){
-    console.log('Log--->', this.center_form.value)
-    this.reset()
-    // this.http.post('matches', this.setPayload(this.match_form.value)).subscribe((response: any) => {
-    //   console.log('Log--->', response);
-    //   // this.getMatches()
-    // })
-  }
+  saveForm(){ this.formData.emit(this.center_form.value) }
 }

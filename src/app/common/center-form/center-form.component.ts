@@ -11,7 +11,7 @@ import { HttpService } from 'src/app/connections/http.service';
 export class CenterFormComponent {
   center_form: FormGroup | any
   input_error_message = "Invalid filed"
-  is_checked: boolean = false
+  action = "New"
 
   @Input() form_fields_validation: any
   @Input() center_form_tags: any
@@ -26,28 +26,30 @@ export class CenterFormComponent {
     private router: Router,
   ) { }
 
+  ngOnChanges() {
+    // this.editForm(this.edit)
+    this.ngOnInit()
+  }
+
   ngOnInit() {
     this.initializeForm()
-    if(this.edit){ this.editForm(this.edit) }
+    if(this.edit){
+      this.editForm(this.edit)
+      this.action = "Edit"
+    }
   }
 
-  reset(){ this.initializeForm() }
+  reset(){
+    this.initializeForm()
+    this.action = "New"
+  }
+
   initializeForm() {this.center_form = this.fb.group(this.form_fields_validation)}
-
-  setCheckBoxValue(field: any){
-    this.is_checked = !this.is_checked
-    this.center_form.get(field).value = this.is_checked
-    console.log('Check--field->', this.center_form.get(field));
-    console.log('Check--field.value->', this.center_form.get(field).value);
-    console.log('Check--form->', this.center_form.value);
-  }
-
-  editForm(object: any){
-    this.center_form.patchValue(object)
-  }
+  editForm(object: any){ this.center_form.patchValue(object) }
 
   saveForm(){
     console.log('Log--->', this.center_form.value)
+    this.reset()
     // this.http.post('matches', this.setPayload(this.match_form.value)).subscribe((response: any) => {
     //   console.log('Log--->', response);
     //   // this.getMatches()

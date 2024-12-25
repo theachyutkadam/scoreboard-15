@@ -11,9 +11,9 @@ import { HttpService } from 'src/app/connections/http.service';
 })
 export class MatchesComponent {
   form_title = "Match"
-  form_type = "New"
+  // form_type = "New"
   action_url = "matches"
-  edit_match = ""
+  edit_match: any
   teams: any
   matches: any
   match_form_tags: any
@@ -25,7 +25,6 @@ export class MatchesComponent {
     private route: ActivatedRoute,
     private toastr: ToastrService,
   ) {}
-
 
   form_fields = {
     team1_id: ['', Validators.required],
@@ -60,6 +59,9 @@ export class MatchesComponent {
     this.http.get('teams', '').subscribe((response: any) => {
       this.teams = response.teams
       this.setupPageTags()
+    }, (err: any) => {
+      console.error(err)
+      this.toastr.error(err.message, 'Error!');
     })
   }
 
@@ -95,6 +97,33 @@ export class MatchesComponent {
     this.http.post('matches', this.setPayload(this.match_form.value)).subscribe((response: any) => {
       console.log('Log--->', response);
       this.getMatches()
+    })
+  }
+
+  editMatch(match_id: any){
+    this.http.get('matches/'+match_id, '').subscribe((response: any) => {
+      this.edit_match = response.match
+      // this.form_title = "Edit Match"
+      // this.match_form.patchValue(this.edit_match)
+      // console.log('Check-normal-->', response.match.start_at);
+      // console.log('Check--Date->', new Date(response.match.start_at));
+      // console.log('Check--ng->', new Date());
+    }, (err: any) => {
+      console.error(err)
+      this.toastr.error(err.message, 'Error!');
+    })
+  }
+
+  deleteMatch(match_id: any){
+    this.http.delete('matches/'+match_id).subscribe((response: any) => {
+      this.getMatches()
+      this.edit_match = null
+      // this.initializeForm()
+      // this.form_title = "New Match"
+      this.toastr.error("Match Deleted", 'Destroy!');
+    }, (err: any) => {
+      console.error(err)
+      this.toastr.error(err.message, 'Error!');
     })
   }
 

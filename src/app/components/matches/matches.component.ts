@@ -78,9 +78,9 @@ export class MatchesComponent {
 
   setPayload(form: any){
     let payload = {
-      "team1_id":           parseInt(form.team1),
-      "team2_id":           parseInt(form.team2),
-      "toss_winer_team_id": parseInt(form.toss_winer_team),
+      "team1_id":           parseInt(form.team1_id),
+      "team2_id":           parseInt(form.team2_id),
+      "toss_winer_team_id": parseInt(form.toss_winer_team_id),
       "toss_dicision":   form.toss_dicision,
       "start_at":        form.start_at,
       "end_at":          form.end_at,

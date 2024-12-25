@@ -9,26 +9,26 @@
           <div class="row">
             <div class="col-sm mb-3">
               <label for="team1" class="form-label">Team1</label>
-              <select class="form-control" formControlName="team1">
+              <select class="form-control" formControlName="team1_id">
                 <option value="">Select Team1</option>
                 <option *ngFor="let team of teams" [value]="team.id">{{team.name | titlecase}} - {{team.city | titlecase}}</option>
               </select>
-              <div *ngIf="match_form.get('team1')?.touched && match_form.get('team1')?.invalid">
-                <small *ngIf="match_form.get('team1')?.errors?.['required']" class="error-message">
+              <div *ngIf="match_form.get('team1_id')?.touched && match_form.get('team1_id')?.invalid">
+                <small *ngIf="match_form.get('team1_id')?.errors?.['required']" class="error-message">
                   Team1 is required.
                 </small>
               </div>
             </div>
             <div class="col-sm mb-3">
               <label for="team2" class="form-label">Team2</label>
-              <select class="form-control" formControlName="team2">
+              <select class="form-control" formControlName="team2_id">
                 <option value="">Select Team2</option>
                 <option *ngFor="let team of teams" [value]="team.id">{{team.name | titlecase}} - {{team.city | titlecase}}</option>
               </select>
             </div>
             <div class="col-sm mb-3">
               <label for="toss_winer_team" class="form-label">Toss Winner Team</label>
-              <select class="form-control" formControlName="toss_winer_team">
+              <select class="form-control" formControlName="toss_winer_team_id">
                 <option value="">Select Toss Winner Team</option>
                 <option *ngFor="let team of teams" [value]="team.id">{{team.name | titlecase}} - {{team.city | titlecase}}</option>
               </select>

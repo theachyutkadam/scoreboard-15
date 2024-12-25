@@ -20,8 +20,10 @@
               </label>
 
               <div *ngIf="field.type == 'checkbox'">
-                <input [attr.type]="field.type" class="form-check-input" [formControlName]="field.form_control_name"
-                  [id]="field.form_control_name">
+                <!-- <input [attr.type]="field.type" class="form-check-input" [formControlName]="field.form_control_name"
+                  [id]="field.form_control_name" (click)="setCheckBoxValue()" [value]="is_checked"> -->
+                <!-- <input [attr.type]="field.type" [formControlName]="field.form_control_name" (click)="setCheckBoxValue(field.form_control_name)"> -->
+                <input type="checkbox" class="form-check-input" [formControlName]="field.form_control_name">
                 <div
                   *ngIf="center_form.get(field.form_control_name)?.touched && center_form.get(field.form_control_name)?.invalid && field.is_required">
                   <small class="error-message" *ngIf="center_form.get(field.form_control_name)?.errors?.['required']">

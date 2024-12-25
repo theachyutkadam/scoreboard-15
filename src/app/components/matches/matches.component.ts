@@ -11,18 +11,18 @@ import { HttpService } from 'src/app/connections/http.service';
 })
 export class MatchesComponent {
   form_title = "Match"
-  // form_type = "New"
   action_url = "matches"
   edit_match: any
-  teams: any
-  matches: any
   match_form_tags: any
   match_form!: FormGroup
 
+  teams: any
+  matches: any
+
   constructor(
-    private fb: FormBuilder,
+    // private fb: FormBuilder,
     private http: HttpService,
-    private route: ActivatedRoute,
+    // private route: ActivatedRoute,
     private toastr: ToastrService,
   ) {}
 
@@ -38,13 +38,13 @@ export class MatchesComponent {
   }
 
   ngOnInit() {
-    this.initializeForm()
+    // this.initializeForm()
     this.getTeams()
     this.getMatches()
   }
 
-  resert(){ this.initializeForm() }
-  initializeForm(){ this.match_form = this.fb.group(this.form_fields) }
+  // resert(){ this.initializeForm() }
+  // initializeForm(){ this.match_form = this.fb.group(this.form_fields) }
 
   getMatches(){
     this.http.get('matches', '').subscribe((response: any) => {

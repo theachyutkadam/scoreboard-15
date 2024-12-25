@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { HttpService } from 'src/app/connections/http.service';
 
 @Component({
@@ -10,11 +11,12 @@ import { HttpService } from 'src/app/connections/http.service';
 })
 export class TeamsComponent {
   form_title = "Teams"
-  form_type = "New"
   action_url = "teams"
+  edit_team: any
+  team_form_tags: any
+
   players: any
   teams: any
-  team_form_tags: any
 
   form_fields = {
     name: ['', Validators.required],
@@ -26,7 +28,11 @@ export class TeamsComponent {
     vice_captain_id: [''],
   }
 
-  constructor( private http: HttpService ){}
+  constructor(
+    private http: HttpService,
+    private toastr: ToastrService
+  ){}
+
   ngOnInit(){
     this.getPlayers()
     this.getTeams()
@@ -36,13 +42,13 @@ export class TeamsComponent {
     this.http.get('players', '').subscribe((response: any) => {
       this.players = response.players
       this.setupPageTags()
-    })
+    }, (err: any) => {this.apiError(err)})
   }
 
   getTeams(){
     this.http.get('teams', '').subscribe((response: any) => {
       this.teams = response.teams
-    })
+    }, (err: any) => {this.apiError(err)})
   }
 
   setupPageTags(){
@@ -58,14 +64,22 @@ export class TeamsComponent {
     ]
   }
 
-  edit_team = {
-    // "company_name": "KTM",
-    // "name": "390 adventure R",
-    // "color": "Orange",
-    // "number": "MH14 RA 4907",
-    // "engine_in_cc": "399",
-    // "top_speed": "205",
-    // "type": "2w",
-    // "purchase_date": "2024-11-19",
+  editTeam(team_id: any){
+    this.http.get('teams/'+team_id, '').subscribe((response: any) => {
+      this.edit_team = response.team
+    }, (err: any) => {this.apiError(err)})
+  }
+
+  deleteTeam(team_id: any){
+    this.http.delete('teams/'+team_id).subscribe((response: any) => {
+      this.getTeams()
+      this.edit_team = null
+      this.toastr.error("Team Deleted", 'Destroy!');
+    }, (err: any) => {this.apiError(err)})
+  }
+
+  apiError(err: any){
+    console.error(err)
+    this.toastr.error(err.message, 'Error!');
   }
 }

@@ -20,6 +20,7 @@
           <th>Contact</th>
           <th>Captain</th>
           <th>Status</th>
+          <th colspan="2">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -31,6 +32,8 @@
           <td>{{team.contact ?? '-' }}</td>
           <td>{{team.captain.name | titlecase}}</td>
           <td>{{team.status | titlecase}}</td>
+          <td><button (click)="editTeam(team.id)" class="btn btn-sm btn-warning">Edit</button></td>
+          <td><button (click)="deleteTeam(team.id)" class="btn btn-sm btn-danger">Delete</button></td>
         </tr>
       </tbody>
     </table>

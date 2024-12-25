@@ -26,16 +26,19 @@ export class CenterFormComponent {
     private router: Router,
   ) { }
 
-  ngOnChanges() {
-    // this.editForm(this.edit)
-    this.ngOnInit()
-  }
+  ngOnChanges() { this.ngOnInit() }
 
   ngOnInit() {
     this.initializeForm()
+    this.checkAction()
+  }
+
+  checkAction() {
     if(this.edit){
       this.editForm(this.edit)
       this.action = "Edit"
+    } else {
+      this.action = "New"
     }
   }
 

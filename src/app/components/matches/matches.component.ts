@@ -49,21 +49,14 @@ export class MatchesComponent {
   getMatches(){
     this.http.get('matches', '').subscribe((response: any) => {
       this.matches = response.matches
-    }, (err: any) => {
-      console.error(err)
-      this.toastr.error(err.message, 'Error!');
-    })
+    }, (err: any) => {this.apiError(err)})
   }
 
   getTeams(){
     this.http.get('teams', '').subscribe((response: any) => {
       this.teams = response.teams
       this.setupPageTags()
-    }, (err: any) => {
-      console.error(err)
-      this.toastr.error(err.message, 'Error!');
-    })
-  }
+    }, (err: any) => {this.apiError(err)})  }
 
   setupPageTags(){
     this.match_form_tags = [
@@ -103,28 +96,19 @@ export class MatchesComponent {
   editMatch(match_id: any){
     this.http.get('matches/'+match_id, '').subscribe((response: any) => {
       this.edit_match = response.match
-      // this.form_title = "Edit Match"
-      // this.match_form.patchValue(this.edit_match)
-      // console.log('Check-normal-->', response.match.start_at);
-      // console.log('Check--Date->', new Date(response.match.start_at));
-      // console.log('Check--ng->', new Date());
-    }, (err: any) => {
-      console.error(err)
-      this.toastr.error(err.message, 'Error!');
-    })
+    }, (err: any) => {this.apiError(err)})
   }
 
   deleteMatch(match_id: any){
     this.http.delete('matches/'+match_id).subscribe((response: any) => {
       this.getMatches()
       this.edit_match = null
-      // this.initializeForm()
-      // this.form_title = "New Match"
       this.toastr.error("Match Deleted", 'Destroy!');
-    }, (err: any) => {
-      console.error(err)
-      this.toastr.error(err.message, 'Error!');
-    })
+    }, (err: any) => {this.apiError(err)})
   }
 
+  apiError(err: any){
+    console.error(err)
+    this.toastr.error(err.message, 'Error!');
+  }
 }

@@ -109,7 +109,7 @@
           titlecase | slice:0:10}}</td>
         <td>{{match.number_of_overs}} Overs</td>
         <td>{{match.start_at | date: 'MMM d, y, h:mm:ss a'}}</td>
-        <td>{{match.end_at ?? '-' }}</td>
+        <td>{{match.end_at ?? '-' | date: 'MMM d, y, h:mm:ss a'}}</td>
         <td>{{match.status | titlecase}}</td>
         <td><button (click)="editMatch(match.id)" class="btn btn-sm btn-warning">Edit</button></td>
         <td><button (click)="deleteMatch(match.id)" class="btn btn-sm btn-danger">Delete</button></td>

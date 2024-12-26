@@ -24,9 +24,7 @@ export class MatchesComponent {
   ]
 
   constructor(
-    // private fb: FormBuilder,
     private http: HttpService,
-    // private route: ActivatedRoute,
     private toastr: ToastrService,
   ) {}
 
@@ -72,26 +70,36 @@ export class MatchesComponent {
     ]
   }
 
-  setPayload(form: any){
+  setPayload(event: any){
     let payload = {
-      "team1_id":           form.team1_id,
-      "team2_id":           form.team2_id,
-      "toss_winer_team_id": form.toss_winer_team_id,
-      "toss_dicision":   form.toss_dicision,
-      "start_at":        form.start_at,
-      "end_at":          form.end_at,
-      "number_of_overs": form.number_of_overs,
-      "is_draw":         form.is_draw,
+      "team1_id":           event.form.team1_id,
+      "team2_id":           event.form.team2_id,
+      "toss_winer_team_id": event.form.toss_winer_team_id,
+      "toss_dicision":      event.form.toss_dicision,
+      "start_at":           event.form.start_at,
+      "end_at":             event.form.end_at,
+      "number_of_overs":    event.form.number_of_overs,
+      "is_draw":            event.form.is_draw,
     }
-    this.saveMatches(payload)
+    event.action == 'New' ? this.create(payload) : this.update(payload)
   }
 
-  saveMatches(payload: any) {
+  create(payload: any){
     this.http.post('matches', payload).subscribe((response: any) => {
-      this.getMatches()
-      this.edit_match = null
-      this.toastr.success("Match Created", 'Success!');
+      this.afterSave("Match Create!")
     }, (err: any) => {this.apiError(err)})
+  }
+
+  update(payload: any){
+    this.http.patch('matches/'+this.edit_match.id, payload).subscribe((response: any) => {
+      this.afterSave("Match Update!")
+    }, (err: any) => {this.apiError(err)})
+  }
+
+  afterSave(msg: string){
+    this.getMatches()
+    this.edit_match = null
+    this.toastr.success(msg, 'Success!');
   }
 
   editMatch(match_id: any){

@@ -19,8 +19,7 @@ export class CenterFormComponent {
   @Input() action_url: any
   @Input() edit: any
 
-  @Output() formData = new EventEmitter<any>()
-  // @Output(“parentFun”) parentFun: EventEmitter<any> = new EventEmitter();
+  @Output() formData = new EventEmitter<{form: any, action: string}>()
 
   input_options = ['text', 'date', 'datetime-local', 'password', 'email', 'number']
   constructor(
@@ -52,5 +51,5 @@ export class CenterFormComponent {
 
   initializeForm() {this.center_form = this.fb.group(this.form_fields_validation)}
   editForm(object: any){ this.center_form.patchValue(object) }
-  saveForm(){ this.formData.emit(this.center_form.value) }
+  saveForm(){ this.formData.emit({form: this.center_form.value, action: this.action}) }
 }

@@ -3,7 +3,9 @@
   [center_form_tags]="team_form_tags"
   [action_url]="action_url"
   [form_title]="form_title"
-  [edit]="edit_team">
+  [edit]="edit_team"
+  (formData)="setPayload($event)"
+  >
 </app-center-form>
 
 <div class="table-responsive">

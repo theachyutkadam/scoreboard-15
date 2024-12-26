@@ -44,6 +44,10 @@
                 </div>
               </div>
 
+              <div *ngIf="field.type == 'datetime-local'">
+                <input type="datetime-local" class="form-control" [formControlName]="field.form_control_name">
+              </div>
+
               <div *ngIf="input_options.includes(field.type)">
                 <input [attr.type]="field.type" [formControlName]="field.form_control_name" [attr.placeholder]="field.label"
                   class="form-control">
@@ -71,8 +75,6 @@
               </div>
             </div>
           </div>
-          <!-- <button type="submit" class="btn btn-sm btn-warning float-end" (click)="reset()">Reset</button>
-          <button type="submit" class="btn btn-sm btn-primary float-end" style="margin-right: 10px;" [disabled]="center_form.invalid">Submit</button> -->
         </form>
       </div>
     </div>

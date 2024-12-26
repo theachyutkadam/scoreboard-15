@@ -3,7 +3,9 @@
   [center_form_tags]="user_form_tags"
   [action_url]="action_url"
   [form_title]="form_title"
-  [edit]="edit_user">
+  [edit]="edit_user"
+  (formData)="setPayload($event)"
+  >
 </app-center-form>
 
 <div class="table-responsive">
@@ -20,6 +22,7 @@
           <th>Speciality</th>
           <th>Gender</th>
           <th>Status</th>
+          <th colspan="2">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -31,6 +34,8 @@
           <td>{{user.speciality | titlecase }}</td>
           <td>{{user.gender | titlecase}}</td>
           <td>{{user.user.status | titlecase}}</td>
+          <td><button (click)="editUser(user.id)" class="btn btn-sm btn-warning">Edit</button></td>
+          <td><button (click)="deleteUser(user.id)" class="btn btn-sm btn-danger">Delete</button></td>
         </tr>
       </tbody>
     </table>

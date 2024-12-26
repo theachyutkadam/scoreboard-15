@@ -21,7 +21,7 @@ export class CenterFormComponent {
 
   @Output() formData = new EventEmitter<{form: any, action: string}>()
 
-  input_options = ['text', 'date', 'datetime-local', 'password', 'email', 'number']
+  input_options = ['text', 'date', 'password', 'email', 'number']
   constructor(
     private fb: FormBuilder,
     private http: HttpService,

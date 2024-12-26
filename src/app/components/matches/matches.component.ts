@@ -61,8 +61,8 @@ export class MatchesComponent {
     this.match_form_tags = [
       { type: 'select', is_required: true, label: 'Team1' , form_control_name: 'team1_id', dropdown: this!.teams},
       { type: 'select', is_required: true, label: 'Team2' , form_control_name: 'team2_id', dropdown: this!.teams},
-      { type: 'datetime-local', is_required: true, label: 'Start At' , form_control_name: 'start_at' },
-      { type: 'datetime-local', is_required: true, label: 'End At' , form_control_name: 'end_at' },
+      { type: 'datetime-local', is_required: true, label: 'Start At' , form_control_name: 'start_at', value: this.edit_match == null ? new Date() : this.edit_match.start_at},
+      { type: 'datetime-local', is_required: true, label: 'End At' , form_control_name: 'end_at', value: this.edit_match == null ? '' : this.edit_match.end_at},
       { type: 'select', is_required: true, label: 'Toss Winer Team' , form_control_name: 'toss_winer_team_id', dropdown: this!.teams},
       { type: 'select', is_required: true, label: 'Toss Dicision' , form_control_name: 'toss_dicision', dropdown: this.toss_dicission },
       { type: 'text', is_required: true, label: 'Number Of Overs' , form_control_name: 'number_of_overs' },

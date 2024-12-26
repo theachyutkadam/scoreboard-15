@@ -53,8 +53,8 @@ export class TeamsComponent {
 
   setupPageTags(){
     this.team_form_tags = [
-      { type: 'text', is_required: true, label: 'Name' , form_control_name: 'name' },
       // { type: 'text', is_required: false, label: 'Name' , form_control_name: 'status' },
+      { type: 'text', is_required: true, label: 'Name' , form_control_name: 'name' },
       { type: 'text', is_required: false, label: 'State' , form_control_name: 'state' },
       { type: 'text', is_required: true, label: 'City' , form_control_name: 'city' },
       { type: 'text', is_required: false, label: 'Location' , form_control_name: 'location' },
@@ -62,6 +62,37 @@ export class TeamsComponent {
       { type: 'select', is_required: true, label: 'Captain' , form_control_name: 'captain_id', dropdown: this.players },
       { type: 'select', is_required: false, label: 'Vice Captain' , form_control_name: 'vice_captain_id', dropdown: this.players },
     ]
+  }
+
+  setPayload(event: any){
+    let payload = {
+      "name"           : event.form.name,
+      "state"          : event.form.state,
+      "city"           : event.form.city,
+      "location"       : event.form.location,
+      "contact"        : event.form.contact,
+      "captain_id"     : event.form.captain_id,
+      "vice_captain_id": event.form.vice_captain_id,
+    }
+    event.action == 'New' ? this.create(payload) : this.update(payload)
+  }
+
+  create(payload: any){
+    this.http.post('teams', payload).subscribe((response: any) => {
+      this.afterSave("Team Create!")
+    }, (err: any) => {this.apiError(err)})
+  }
+
+  update(payload: any){
+    this.http.patch('teams/'+this.edit_team.id, payload).subscribe((response: any) => {
+      this.afterSave("Team Update!")
+    }, (err: any) => {this.apiError(err)})
+  }
+
+  afterSave(msg: string){
+    this.getTeams()
+    this.edit_team = null
+    this.toastr.success(msg, 'Success!');
   }
 
   editTeam(team_id: any){

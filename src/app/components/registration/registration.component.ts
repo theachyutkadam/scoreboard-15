@@ -14,8 +14,14 @@ export class RegistrationComponent {
 
   form_fields = {
     email: ['', Validators.required],
-    password: ['', Validators.required],
-    confirm_password: ['', Validators.required]
+    password: ['',
+      [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(12),
+      ],
+    ],
+    confirm_password: ['', Validators.required],
   }
 
   constructor(
@@ -35,10 +41,23 @@ export class RegistrationComponent {
       {"email": "admin@mailinator.com", "password": '11223344'}
     )
   }
-  initializeForm(){ this.registration_form = this.fb.group(this.form_fields) }
+  initializeForm(){
+    this.registration_form = this.fb.group(this.form_fields, {validator: this.checkPassword})
+  }
+
+  checkPassword(fg: FormGroup){
+    const pass = fg.controls['password'].value
+    const conf_pass = fg.controls['confirm_password'].value
+    return pass === conf_pass ? null : { mismatch: true };
+
+    // this.registration_form.value.password === this.registration_form.value.confirm_password ? null : {'mismatch': true}
+  }
 
   setPayload(form: any){
-    let payload = { "email" : form.email, "password" : form.password}
+    let payload = {
+      "email" : form.email,
+      "password" : form.password
+    }
     return payload
   }
 

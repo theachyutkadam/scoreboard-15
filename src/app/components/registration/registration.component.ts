@@ -62,7 +62,7 @@ export class RegistrationComponent {
   }
 
   registration(){
-    this.http.post('users/registration', this.setPayload(this.registration_form.value)).subscribe((response: any) => {
+    this.http.post('users', this.setPayload(this.registration_form.value)).subscribe((response: any) => {
       console.log('registration--->', response);
       response.status == 200 ? this.afterLogin(response) : this.error(response)
     }, (err: any) => {

@@ -18,6 +18,7 @@ export class CenterFormComponent {
   @Input() form_title: any
   @Input() action_url: any
   @Input() edit: any
+  @Input() reset_btn: any = true
 
   @Output() formData = new EventEmitter<{form: any, action: string}>()
 

@@ -4,13 +4,13 @@
     <div class="card">
       <div class="card-body">
         <form class="col-lg-12" [formGroup]="center_form" (ngSubmit)="saveForm()">
-          <a class="btn btn-sm btn-warning float-end" (click)="reset()">Reset</a>
+          <a class="btn btn-sm btn-warning float-end" (click)="reset()" *ngIf="reset_btn">Reset</a>
           <button type="submit"
             style="margin-right: 10px;"
             class="btn btn-sm btn-primary float-end"
             ngClass="{{center_form.invalid ? 'btn btn-sm btn-outline-secondary float-end': 'btn btn-sm btn-primary float-end'}}"
             [disabled]="center_form.invalid">
-            Submit
+            Save
           </button>
           <h5 class="card-title fw-semibold mb-4">{{action}} {{form_title}}</h5>
           <div class="row input-group mb-3">

@@ -15,13 +15,12 @@
     aria-describedby="alt_pagination_info">
       <thead>
         <tr>
-          <th>#ID</th>
-          <th>Name</th>
-          <th>State</th>
-          <th>City</th>
-          <th>Contact</th>
-          <th>Captain</th>
-          <th>Status</th>
+          <th class="cursor-pointer" (click)="getTeamsByOrder('id')">#ID</th>
+          <th class="cursor-pointer" (click)="getTeamsByOrder('name')">Name</th>
+          <th class="cursor-pointer" (click)="getTeamsByOrder('city')">City</th>
+          <th class="cursor-pointer" (click)="getTeamsByOrder('contact')">Contact</th>
+          <th class="cursor-pointer" (click)="getTeamsByOrder('captain_id')">Captain</th>
+          <th class="cursor-pointer" (click)="getTeamsByOrder('status')">Status</th>
           <th colspan="2">Action</th>
         </tr>
       </thead>
@@ -29,7 +28,6 @@
         <tr *ngFor="let team of teams">
           <td>{{team.id}}</td>
           <td>{{team.name | titlecase}}</td>
-          <td>{{team.state ?? '-' }}</td>
           <td>{{team.city ?? '-' }}</td>
           <td>{{team.contact ?? '-' }}</td>
           <td>{{team.captain.name | titlecase}}</td>

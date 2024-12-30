@@ -15,6 +15,11 @@ export class TeamsComponent {
   edit_team: any
   team_form_tags: any
 
+  //table head asc and desc variables
+  order: boolean = false
+  order_by: string = 'id'
+
+  //table data variables
   players: any
   teams: any
 
@@ -45,8 +50,22 @@ export class TeamsComponent {
     }, (err: any) => {this.apiError(err)})
   }
 
+  getTeamsByOrder(order_by: string = "name", order: string = 'asc') {
+    if(this.order_by == order_by){
+      this.order = !this.order
+    } else{
+      this.order_by = order_by
+    }
+    this.getTeams()
+  }
+
   getTeams(){
-    this.http.get('teams', '').subscribe((response: any) => {
+    let params = [
+      {key: "order_by", value: this.order_by},
+      {key: "order", value: this.order ? 'asc' : 'desc'}
+    ]
+
+    this.http.get('teams', params).subscribe((response: any) => {
       this.teams = response.teams
     }, (err: any) => {this.apiError(err)})
   }

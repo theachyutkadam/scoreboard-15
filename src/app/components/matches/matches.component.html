@@ -90,7 +90,16 @@
 </app-center-form>
 
 <div class="table-responsive">
-  <h4><strong> Matches </strong></h4>
+  <div class="float-end" (change)="getMatches($event)">
+    <select class="form-control">
+      <option value="upcomming">Upcomming</option>
+      <option value="active">Active</option>
+      <option value="finished">Finished</option>
+      <option value="draw">Draw</option>
+      <option value="">All</option>
+    </select>
+  </div>
+  <h5>Matches</h5>
   <table id="alt_pagination" class="table table-striped table-bordered display text-nowrap dataTable"
     aria-describedby="alt_pagination_info">
     <thead>

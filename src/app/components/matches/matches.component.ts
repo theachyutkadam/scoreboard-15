@@ -44,8 +44,10 @@ export class MatchesComponent {
     this.getMatches()
   }
 
-  getMatches(){
-    this.http.get('matches', '').subscribe((response: any) => {
+  getMatches(event: any= "upcomming"){
+    let status= event.target ? event.target.value : event
+    let params = [{key: "status", value: status}]
+    this.http.get('matches', params).subscribe((response: any) => {
       this.matches = response.matches
     }, (err: any) => {this.apiError(err)})
   }

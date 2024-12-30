@@ -36,6 +36,7 @@ export class LoginComponent {
       )
     })
   }
+
   initializeForm(){ this.login_form = this.fb.group(this.form_fields) }
 
   setPayload(form: any){

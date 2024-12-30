@@ -30,7 +30,7 @@ const routes: Routes = [
     title:"Matches",
     component: MatchesComponent
   },
-  { path: 'match/:id/score',
+  { path: 'score',
     title:"Score",
     component: ScoreComponent
   },

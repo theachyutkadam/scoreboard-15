@@ -59,7 +59,7 @@ export class LoginComponent {
     sessionStorage.setItem("authToken", response.auth_token)
     sessionStorage.setItem("user_details", response.user_details)
     this.router.navigateByUrl('/')
-    this.toastr.success(response.user_details.full_name, 'Welcome!');
+    this.toastr.success(response.user_details.email, 'Welcome!');
   }
 
   error(response: any){

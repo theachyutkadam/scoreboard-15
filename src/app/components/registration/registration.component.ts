@@ -79,6 +79,7 @@ export class RegistrationComponent {
   }
 
   error(response: any){
+
     this.toastr.error(response.errors, 'Error!');
   }
 }

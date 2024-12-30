@@ -110,7 +110,7 @@
         <td>{{match.team1.name +'-'+ match.team1.city | titlecase}} VS {{match.team2.name +'-'+ match.team2.city |
           titlecase | slice:0:10}}</td>
         <td>{{match.number_of_overs}} Overs</td>
-        <td>{{match.start_at | date: 'MMM d, y, h:mm:ss a'}}</td>
+        <td>{{match.start_at | date: 'E MMM d, y, h:mm:ss a'}}</td>
         <td>{{match.end_at | date: 'MMM d, y, h:mm:ss a'}}</td>
         <td>{{match.status | titlecase}}</td>
         <td><button (click)="editMatch(match.id)" class="btn btn-sm btn-warning">Edit</button></td>

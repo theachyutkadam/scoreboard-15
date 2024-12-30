@@ -41,14 +41,14 @@
                   </tr>
                   <tbody>
                     <tr>
-                      <td>Rohit Sharma <span class="error-message"> *</span></td>
+                      <td>{{strike_batsman}} <span class="error-message"> *</span></td>
                       <td>52</td>
                       <td>35</td>
                       <td>2</td>
                       <td>1</td>
                     </tr>
                     <tr>
-                      <td>Ajit Sharma</td>
+                      <td>{{non_strike_batsman}}</td>
                       <td>112</td>
                       <td>75</td>
                       <td>9</td>
@@ -144,7 +144,7 @@
             </tr>
           </table>
           <button class="btn btn-danger btn-sm">Undo</button>
-          <button class="btn btn-danger btn-sm">Swap Batsman</button>
+          <button class="btn btn-danger btn-sm" (click)="swap(strike_batsman, non_strike_batsman)">Swap Batsman</button>
         </div>
       </div>
     </div>

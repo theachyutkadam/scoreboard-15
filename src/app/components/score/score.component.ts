@@ -12,6 +12,8 @@ import { HttpService } from 'src/app/connections/http.service';
 export class ScoreComponent {
   metch_id: any;
   score_form!: FormGroup
+  strike_batsman: any = "Suresh Raina"
+  non_strike_batsman: any = "M.S Dhoni"
 
   constructor(
     private fb: FormBuilder,
@@ -39,4 +41,9 @@ export class ScoreComponent {
   resert(){ this.initializeForm() }
   ngOnInit() { this.initializeForm() }
   initializeForm(){ this.score_form = this.fb.group(this.form_fields) }
+
+  swap(strike_batsman: string, non_strike_batsman: string){
+    this.strike_batsman = non_strike_batsman
+    this.non_strike_batsman = strike_batsman
+  }
 }

@@ -5,12 +5,12 @@
         <div class="card overflow-hidden">
           <div class="card-body p-4">
             <h5 class="card-title mb-10 fw-semibold">Match Live
-              <div class="spinner-grow spinner-grow-sm text-danger" role="status">
+              <div class="spinner-grow spinner-grow-sm text-primary" role="status">
                 <span class="visually-hidden">Loading...</span>
               </div>
             </h5>
             <div class="row">
-              <div class="col-7">
+              <div class="col-lg-12">
                 <div class="row">
                   <div class="col-lg-8">
                     <div class="d-flex mb-2">
@@ -21,22 +21,27 @@
                   </div>
                   <div class="col-lg-4">
                     <div class="d-flex mb-2">
-                      <p class="text-dark me-1 fs-3 mb-0">Batting- </p>
-                      <p class="fs-3 mb-0">Team1</p>
+                      <p class="fs-3 mb-0">Batting- </p>
+                      <p class="text-dark me-1 fs-3 mb-0">Team1</p>
                     </div>
                   </div>
                 </div>
-                <!-- <table class="table table-bordered">
+                <table class="table table-sm">
                   <tr>
-                    <th>Batsman</th>
-                    <th>Run</th>
-                    <th>Bowl</th>
-                    <th>4</th>
-                    <th>6</th>
+                    <th>
+                      <div>
+                        <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
+                        <span class="fs-2">Batsman</span>
+                      </div>
+                    </th>
+                    <th><span class="fs-2">Run</span></th>
+                    <th><span class="fs-2">Bowl</span></th>
+                    <th><span class="fs-2">4</span></th>
+                    <th><span class="fs-2">6</span></th>
                   </tr>
                   <tbody>
                     <tr>
-                      <td>Rohit Sharma</td>
+                      <td>Rohit Sharma <span class="error-message"> *</span></td>
                       <td>52</td>
                       <td>35</td>
                       <td>2</td>
@@ -51,41 +56,27 @@
                     </tr>
                   </tbody>
                   <tr>
-                    <th>Bowler</th>
-                    <th>Over</th>
-                    <th>M</th>
-                    <th>Run</th>
-                    <th>Wicket</th>
+                    <th>
+                      <div class="me-3">
+                        <span class="round-8 bg-danger rounded-circle me-2 d-inline-block"></span>
+                        <span class="fs-2">Blower</span>
+                      </div>
+                    </th>
+                    <th><span class="fs-2">Over</span></th>
+                    <th><span class="fs-2">M</span></th>
+                    <th><span class="fs-2">Run</span></th>
+                    <th><span class="fs-2">Wicket</span></th>
                   </tr>
                   <tbody>
                     <tr>
-                      <td>Zahir Khan</td>
-                      <td>112</td>
-                      <td>75</td>
-                      <td>9</td>
-                      <td>12</td>
+                      <td><span class="fs-2">Zahir Khan</span></td>
+                      <td><span class="fs-2">112</span></td>
+                      <td><span class="fs-2">75</span></td>
+                      <td><span class="fs-2">9</span></td>
+                      <td><span class="fs-2">12</span></td>
                     </tr>
                   </tbody>
-                </table> -->
-                <div class="align-items-center">
-                  <div>
-                    <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
-                    <span class="fs-2">Batsman<span class="error-message"> *</span></span>
-                  </div>
-                  <div>
-                    <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
-                    <span class="fs-2">Batsman</span>
-                  </div>
-                  <div class="me-3">
-                    <span class="round-8 bg-danger rounded-circle me-2 d-inline-block"></span>
-                    <span class="fs-2">Blower</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-5">
-                <div class="d-flex justify-content-center">
-                  <div id="grade"></div>
-                </div>
+                </table>
               </div>
             </div>
           </div>
@@ -97,7 +88,7 @@
             <div class="row alig n-items-start">
               <div class="col-8">
                 <h5 class="card-title mb-10 fw-semibold">Current Score</h5>
-                <h4 class="fw-semibold mb-3">Run- 122/3</h4>
+                <h5 class="fw-semibold mb-3">Run- 122/3</h5>
                 <div class="d-flex align-items-center pb-1">
                   <p class="fs-3 mb-0">Overs- </p>
                   <p class="text-dark me-1 fs-3 mb-0">3.5</p>
@@ -124,7 +115,7 @@
           <div class="">
             <h5 class="card-title fw-semibold">ScoreBook</h5>
           </div>
-          <div class="dropdown">
+          <!-- <div class="dropdown">
             <button id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
               class="rounded-circle btn-transparent rounded-circle btn-sm px-1 btn shadow-none">
               <i class="ti ti-dots-vertical fs-7 d-block"></i>
@@ -138,7 +129,7 @@
                 <a class="dropdown-item" href="#">Something else here</a>
               </li>
             </ul>
-          </div>
+          </div> -->
         </div>
         <div id="profit"></div>
       </div>

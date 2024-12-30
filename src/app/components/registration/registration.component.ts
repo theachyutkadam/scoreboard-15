@@ -32,15 +32,18 @@ export class RegistrationComponent {
   ){}
 
   ngOnInit() {
-    // this.patchFakeUser()
     this.initializeForm()
+    this.patchFakeUser()
   }
 
   patchFakeUser(){
-    this.registration_form.patchValue(
-      {"email": "admin@mailinator.com", "password": '11223344'}
-    )
+    this.registration_form.patchValue({
+      "email": "admin@mailinator.com",
+      "password": '11223344',
+      "confirm_password": '11223344'
+    })
   }
+
   initializeForm(){
     this.registration_form = this.fb.group(this.form_fields, {validator: this.checkPassword})
   }
@@ -49,8 +52,6 @@ export class RegistrationComponent {
     const pass = fg.controls['password'].value
     const conf_pass = fg.controls['confirm_password'].value
     return pass === conf_pass ? null : { mismatch: true };
-
-    // this.registration_form.value.password === this.registration_form.value.confirm_password ? null : {'mismatch': true}
   }
 
   setPayload(form: any){
@@ -64,22 +65,21 @@ export class RegistrationComponent {
   registration(){
     this.http.post('users', this.setPayload(this.registration_form.value)).subscribe((response: any) => {
       console.log('registration--->', response);
-      response.status == 200 ? this.afterLogin(response) : this.error(response)
-    }, (err: any) => {
-      console.error(err)
-      this.toastr.error(err.message, 'Error!');
+      response.status == 201 ? this.afterLogin(response) : this.error(response)
+    }, (error: any) => {
+      console.error(error.errors)
+      this.toastr.error(error.errors, 'Error!');
     })
   }
 
   afterLogin(response: any){
     sessionStorage.setItem("authToken", response.auth_token)
     sessionStorage.setItem("user_details", response.user_details)
-    this.router.navigateByUrl('/')
-    this.toastr.success(response.user_details.full_name, 'Welcome!');
+    this.router.navigateByUrl('/profile')
+    this.toastr.success(response.email, 'Welcome!');
   }
 
   error(response: any){
-
     this.toastr.error(response.errors, 'Error!');
   }
 }

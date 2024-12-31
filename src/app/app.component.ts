@@ -24,6 +24,9 @@ export class AppComponent {
   isUserLoggedIn(event: any){
     if(sessionStorage.getItem("authToken")){
       this.is_login = true
+      if(event.url == '/login' || event.url == '/registration'){
+        this.router.navigateByUrl("/")
+      }
     } else {
       this.is_login = false
       if(event.url == '/registration'){} else {

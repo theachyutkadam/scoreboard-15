@@ -10,6 +10,8 @@ import { HttpService } from 'src/app/connections/http.service';
   styleUrls: ['./matches.component.css']
 })
 export class MatchesComponent {
+  @ViewChild('filter') filter!: ElementRef;
+
   form_title = "Match"
   action_url = "matches"
   edit_match: any
@@ -58,8 +60,6 @@ export class MatchesComponent {
     this.getTeams()
     this.getMatches()
   }
-
-  @ViewChild('filter') filter!: ElementRef;
 
   getMatchesByOrder(order_by: string = "name") {
     this.order = !this.order

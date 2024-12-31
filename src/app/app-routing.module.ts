@@ -7,6 +7,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { LoginComponent } from './components/login/login.component';
 import { TeamsComponent } from './components/teams/teams.component';
 import { UsersComponent } from './components/users/users.component';
+import { ScoreComponent } from './components/score/score.component';
 
 const routes: Routes = [
   { path: 'login',
@@ -29,11 +30,15 @@ const routes: Routes = [
     title:"Matches",
     component: MatchesComponent
   },
+  { path: 'score',
+    title:"Score",
+    component: ScoreComponent
+  },
   { path: 'users',
     title:"Users",
     component: UsersComponent
   },
-  { path: '',
+  { path: '**',
     title:"Home",
     pathMatch: 'full',
     component: DashboardComponent

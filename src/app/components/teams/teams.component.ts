@@ -10,6 +10,8 @@ import { HttpService } from 'src/app/connections/http.service';
   styleUrls: ['./teams.component.css']
 })
 export class TeamsComponent {
+  @ViewChild('filter') filter!: ElementRef;
+
   form_title = "Teams"
   action_url = "teams"
   edit_team: any
@@ -64,8 +66,6 @@ export class TeamsComponent {
     this.order_by = order_by
     this.getTeams(this.filter.nativeElement.value)
   }
-
-  @ViewChild('filter') filter!: ElementRef;
 
   getTeams(event: any= "active"){
     let status= event.target ? event.target.value : event

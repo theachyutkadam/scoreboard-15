@@ -31,12 +31,12 @@ export class LoginComponent {
 
   patchFakeUser(){
     this.http.get('', '').subscribe((response: any) => {
-      console.log('login--->', response.active_users[0]);
       this.login_form.patchValue(
         {"email": response.active_users[0], "password": '11223344'}
       )
     })
   }
+
   initializeForm(){ this.login_form = this.fb.group(this.form_fields) }
 
   setPayload(form: any){

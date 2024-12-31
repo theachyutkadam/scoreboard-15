@@ -1,0 +1,152 @@
+<div class="row">
+  <div class="col-lg-4">
+    <div class="row">
+      <div class="col-lg-12 col-sm-6">
+        <div class="card overflow-hidden">
+          <div class="card-body p-4">
+            <h5 class="card-title mb-10 fw-semibold">Match Live
+              <div class="spinner-grow spinner-grow-sm text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </h5>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="row">
+                  <div class="col-lg-8">
+                    <div class="d-flex mb-2">
+                      <p class="text-dark me-1 fs-3 mb-0">Team1</p>
+                      <p class="fs-3 mb-0 me-1">VS</p>
+                      <p class="text-dark me-1 fs-3 mb-0">Team2</p>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="d-flex mb-2">
+                      <p class="fs-3 mb-0">Batting- </p>
+                      <p class="text-dark me-1 fs-3 mb-0">Team1</p>
+                    </div>
+                  </div>
+                </div>
+                <table class="table table-sm">
+                  <tr>
+                    <th>
+                      <div>
+                        <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
+                        <span class="fs-2">Batsman</span>
+                      </div>
+                    </th>
+                    <th><span class="fs-2">Run</span></th>
+                    <th><span class="fs-2">Bowl</span></th>
+                    <th><span class="fs-2">4</span></th>
+                    <th><span class="fs-2">6</span></th>
+                  </tr>
+                  <tbody>
+                    <tr>
+                      <td>{{strike_batsman}} <span class="error-message"> *</span></td>
+                      <td>52</td>
+                      <td>35</td>
+                      <td>2</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>{{non_strike_batsman}}</td>
+                      <td>112</td>
+                      <td>75</td>
+                      <td>9</td>
+                      <td>12</td>
+                    </tr>
+                  </tbody>
+                  <tr>
+                    <th>
+                      <div class="me-3">
+                        <span class="round-8 bg-danger rounded-circle me-2 d-inline-block"></span>
+                        <span class="fs-2">Blower</span>
+                      </div>
+                    </th>
+                    <th><span class="fs-2">Over</span></th>
+                    <th><span class="fs-2">M</span></th>
+                    <th><span class="fs-2">Run</span></th>
+                    <th><span class="fs-2">Wicket</span></th>
+                  </tr>
+                  <tbody>
+                    <tr>
+                      <td><span class="fs-2">Zahir Khan</span></td>
+                      <td><span class="fs-2">112</span></td>
+                      <td><span class="fs-2">75</span></td>
+                      <td><span class="fs-2">9</span></td>
+                      <td><span class="fs-2">12</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12 col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="row alig n-items-start">
+              <div class="col-8">
+                <h5 class="card-title mb-10 fw-semibold">Current Score</h5>
+                <h5 class="fw-semibold mb-3">Run- 122/3</h5>
+                <div class="d-flex align-items-center pb-1">
+                  <p class="fs-3 mb-0">Overs- </p>
+                  <p class="text-dark me-1 fs-3 mb-0">3.5</p>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="d-flex justify-content-end">
+                  <div class="spinner-grow spinner-grow-sm text-danger" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="earning"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-8 d-flex align-items-strech">
+    <div class="card w-100">
+      <div class="card-body">
+        <div class="d-flex align-items-center justify-content-between mb-10">
+          <div class="">
+            <h5 class="card-title fw-semibold">ScoreBook</h5>
+          </div>
+          <!-- <div class="dropdown">
+            <button id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
+              class="rounded-circle btn-transparent rounded-circle btn-sm px-1 btn shadow-none">
+              <i class="ti ti-dots-vertical fs-7 d-block"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li>
+                <a class="dropdown-item" href="#">Another action</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </li>
+            </ul>
+          </div> -->
+        </div>
+        <div>
+          <table class="table table-bordered table-striped">
+            <tr>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+              <th>5</th>
+              <th>6</th>
+              <th>7</th>
+            </tr>
+          </table>
+          <button class="btn btn-danger btn-sm">Undo</button>
+          <button class="btn btn-danger btn-sm" (click)="swap(strike_batsman, non_strike_batsman)">Swap Batsman</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

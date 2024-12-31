@@ -45,6 +45,15 @@ export class MatchesComponent {
     is_draw: [''],
   }
 
+  headers = [
+    {name: "ID", order: 'id'},
+    {name: "Match", order: 'team1_id'},
+    {name: "No.Of.Overs", order: 'number_of_overs'},
+    {name: "Start At", order: 'start_at'},
+    {name: "End At", order: 'end_at'},
+    {name: "Status", order: 'status'},
+  ]
+
   ngOnInit() {
     this.getTeams()
     this.getMatches()
@@ -128,6 +137,10 @@ export class MatchesComponent {
 
   editMatch(match_id: any){
     this.http.get('matches/'+match_id, '').subscribe((response: any) => {
+      response.match.start_at = new Date(response.match.start_at).toISOString().slice(0, 16);
+      if(response.match.end_at){
+        response.match.end_at = new Date(response.match.end_at).toISOString().slice(0, 16);
+      }
       this.edit_match = response.match
     }, (err: any) => {this.apiError(err)})
   }

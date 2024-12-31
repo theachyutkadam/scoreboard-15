@@ -33,6 +33,15 @@ export class TeamsComponent {
     vice_captain_id: [''],
   }
 
+  headers = [
+    {name: "ID", order: 'id'},
+    {name: "Name", order: 'name'},
+    {name: "City", order: 'city'},
+    {name: "Contact", order: 'contact'},
+    {name: "Captain", order: 'captain_id'},
+    {name: "Status", order: 'status'},
+  ]
+
   constructor(
     private http: HttpService,
     private toastr: ToastrService

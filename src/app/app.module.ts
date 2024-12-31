@@ -13,7 +13,7 @@ import { HeaderComponent } from './common/header/header.component';
 import { CenterTableComponent } from './common/center-table/center-table.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CenterFormComponent } from './common/center-form/center-form.component';
@@ -44,6 +44,7 @@ import { LoaderInterceptor } from './interceptors/loader.interceptor';
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
+    // DatePipe,
 
     CommonModule,
     BrowserAnimationsModule,

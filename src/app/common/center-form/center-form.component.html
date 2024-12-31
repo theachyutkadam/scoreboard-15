@@ -1,82 +1,80 @@
 
-<div class="container-fluid">
-  <div class="card-body">
-    <div class="card">
-      <div class="card-body">
-        <form class="col-lg-12" [formGroup]="center_form" (ngSubmit)="saveForm()">
-          <a class="btn btn-sm btn-warning float-end" (click)="reset()" *ngIf="reset_btn">Reset</a>
-          <button type="submit"
-            style="margin-right: 10px;"
-            class="btn btn-sm btn-primary float-end"
-            ngClass="{{center_form.invalid ? 'btn btn-sm btn-outline-secondary float-end': 'btn btn-sm btn-primary float-end'}}"
-            [disabled]="center_form.invalid">
-            Save
-          </button>
-          <h5 class="card-title fw-semibold mb-4">{{action}} {{form_title}}</h5>
-          <div class="row input-group mb-3">
-            <div class="col-lg-3" *ngFor="let field of center_form_tags">
-              <label class="col-form-label" [for]="field.form_control_name">{{field.label}}
-                <span class="error-message" *ngIf="field.is_required">*</span>
-              </label>
+<div class="container-fluid px-0 mb-0">
+  <div class="card mb-2">
+    <div class="card-body">
+      <form class="col-lg-12" [formGroup]="center_form" (ngSubmit)="saveForm()">
+        <a class="btn btn-sm btn-warning float-end" (click)="reset()" *ngIf="reset_btn">Reset</a>
+        <button type="submit"
+          style="margin-right: 10px;"
+          class="btn btn-sm btn-primary float-end"
+          ngClass="{{center_form.invalid ? 'btn btn-sm btn-outline-secondary float-end': 'btn btn-sm btn-primary float-end'}}"
+          [disabled]="center_form.invalid">
+          Save
+        </button>
+        <h5 class="card-title fw-semibold">{{action}} {{form_title}}</h5>
+        <div class="row input-group">
+          <div class="col-lg-3" *ngFor="let field of center_form_tags">
+            <label class="col-form-label" [for]="field.form_control_name">{{field.label}}
+              <span class="error-message" *ngIf="field.is_required">*</span>
+            </label>
 
-              <div *ngIf="field.type == 'checkbox'">
-                <input type="checkbox" class="form-check-input" [formControlName]="field.form_control_name">
-                <div
-                  *ngIf="center_form.get(field.form_control_name)?.touched && center_form.get(field.form_control_name)?.invalid && field.is_required">
-                  <small class="error-message" *ngIf="center_form.get(field.form_control_name)?.errors?.['required']">
-                    {{field.label}} is required.
-                  </small>
-                </div>
+            <div *ngIf="field.type == 'checkbox'">
+              <input type="checkbox" class="form-check-input" [formControlName]="field.form_control_name">
+              <div
+                *ngIf="center_form.get(field.form_control_name)?.touched && center_form.get(field.form_control_name)?.invalid && field.is_required">
+                <small class="error-message" *ngIf="center_form.get(field.form_control_name)?.errors?.['required']">
+                  {{field.label}} is required.
+                </small>
               </div>
+            </div>
 
-              <div *ngIf="field.type == 'radio'">
-                <div *ngFor="let option of field.options; index as i">
-                  <input [attr.type]="field.type" [attr.name]="field.form_control_name"
-                    [formControlName]="field.form_control_name" id="{{option.value+i}}" [value]="option.value"
-                    [checked]="center_form.get(field.form_control_name).value == 'yes' ? true : false">
-                  <label for="{{option.value+i}}">{{option.name}}</label>
-                </div>
-                <div
-                  *ngIf="center_form.get(field.form_control_name)?.touched && center_form.get(field.form_control_name)?.invalid && field.is_required">
-                  <small class="error-message" *ngIf="center_form.get(field.form_control_name)?.errors?.['required']">
-                    {{field.label}} is required.
-                  </small>
-                </div>
+            <div *ngIf="field.type == 'radio'">
+              <div *ngFor="let option of field.options; index as i">
+                <input [attr.type]="field.type" [attr.name]="field.form_control_name"
+                  [formControlName]="field.form_control_name" id="{{option.value+i}}" [value]="option.value"
+                  [checked]="center_form.get(field.form_control_name).value == 'yes' ? true : false">
+                <label for="{{option.value+i}}">{{option.name}}</label>
               </div>
-
-              <div *ngIf="field.type == 'datetime-local'">
-                <input type="datetime-local" class="form-control" [formControlName]="field.form_control_name">
+              <div
+                *ngIf="center_form.get(field.form_control_name)?.touched && center_form.get(field.form_control_name)?.invalid && field.is_required">
+                <small class="error-message" *ngIf="center_form.get(field.form_control_name)?.errors?.['required']">
+                  {{field.label}} is required.
+                </small>
               </div>
+            </div>
 
-              <div *ngIf="input_options.includes(field.type)">
-                <input [attr.type]="field.type" [formControlName]="field.form_control_name" [attr.placeholder]="field.label"
-                  class="form-control">
-                <div
-                  *ngIf="center_form.get(field.form_control_name)?.touched && center_form.get(field.form_control_name)?.invalid && field.is_required">
-                  <small class="error-message" *ngIf="center_form.get(field.form_control_name)?.errors?.['required']">
-                    {{field.label}} is required.
-                  </small>
-                </div>
+            <div *ngIf="field.type == 'datetime-local'">
+              <input type="datetime-local" class="form-control" [formControlName]="field.form_control_name">
+            </div>
+
+            <div *ngIf="input_options.includes(field.type)">
+              <input [attr.type]="field.type" [formControlName]="field.form_control_name" [attr.placeholder]="field.label"
+                class="form-control">
+              <div
+                *ngIf="center_form.get(field.form_control_name)?.touched && center_form.get(field.form_control_name)?.invalid && field.is_required">
+                <small class="error-message" *ngIf="center_form.get(field.form_control_name)?.errors?.['required']">
+                  {{field.label}} is required.
+                </small>
               </div>
+            </div>
 
-              <div *ngIf="field.type == 'select' ">
-                <select class="form-control" [formControlName]="field.form_control_name">
-                  <option value="">Select {{field.label}}</option>
-                  <option *ngFor="let object of field.dropdown" [value]="object.id">
-                    {{ object.name }}
-                  </option>
-                </select>
-                <div
-                  *ngIf="center_form.get(field.form_control_name)?.touched && center_form.get(field.form_control_name)?.invalid && field.is_required">
-                  <small class="error-message" *ngIf="center_form.get(field.form_control_name)?.errors?.['required']">
-                    {{field.label}} is required.
-                  </small>
-                </div>
+            <div *ngIf="field.type == 'select' ">
+              <select class="form-control" [formControlName]="field.form_control_name">
+                <option value="">Select {{field.label}}</option>
+                <option *ngFor="let object of field.dropdown" [value]="object.id">
+                  {{ object.name }}
+                </option>
+              </select>
+              <div
+                *ngIf="center_form.get(field.form_control_name)?.touched && center_form.get(field.form_control_name)?.invalid && field.is_required">
+                <small class="error-message" *ngIf="center_form.get(field.form_control_name)?.errors?.['required']">
+                  {{field.label}} is required.
+                </small>
               </div>
             </div>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>

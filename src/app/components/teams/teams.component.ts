@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -56,11 +56,16 @@ export class TeamsComponent {
     } else{
       this.order_by = order_by
     }
-    this.getTeams()
+
+    this.getTeams(this.filter.nativeElement.value)
   }
 
-  getTeams(){
+  @ViewChild('filter') filter!: ElementRef;
+
+  getTeams(event: any= "active"){
+    let status= event.target ? event.target.value : event
     let params = [
+      {key: "status", value: status},
       {key: "order_by", value: this.order_by},
       {key: "order", value: this.order ? 'asc' : 'desc'}
     ]

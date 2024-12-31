@@ -8,11 +8,18 @@
   >
 </app-center-form>
 
-<div class="table-responsive">
+<div class="table-responsive" style="height: 500px; overflow: scroll;">
+  <div class="float-end" (change)="getTeams($event)">
+    <select class="form-control" #filter>
+      <option value="active">Active</option>
+      <option value="pending">Pending</option>
+      <option value="blocked">Blocked</option>
+      <option value="">All</option>
+    </select>
+  </div>
+  <h5 class="mt-2">Teams</h5>
   <div id="alt_pagination_wrapper" class="dataTables_wrapper">
-    <h4><strong> Teams </strong></h4>
-    <table id="alt_pagination" class="table table-striped table-bordered display text-nowrap dataTable"
-    aria-describedby="alt_pagination_info">
+    <table class="table table-striped table-hover table-bordered table-sm">
       <thead>
         <tr>
           <th class="cursor-pointer" (click)="getTeamsByOrder('id')">#

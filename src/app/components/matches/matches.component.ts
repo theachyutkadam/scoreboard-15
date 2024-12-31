@@ -63,8 +63,6 @@ export class MatchesComponent {
 
   getMatches(event: any= "upcomming"){
     let status= event.target ? event.target.value : event
-
-    // let params = [{key: "status", value: status}]
     let params = [
       {key: "status", value: status},
       {key: "order_by", value: this.order_by},

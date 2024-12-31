@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { API_URL, API_BASE_URL } from './config';
+import { API_URL, API_BASE_URL, authToken } from './config';
 import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -8,13 +8,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class HttpService {
 
-  AUTH_TOKEN: any = ''
+  AUTH_TOKEN = sessionStorage.getItem('authToken')
   constructor(private _http: HttpClient) { }
 
   httpHeaderWithToken = new HttpHeaders({
     'Accept': 'application/json',
     'content-type': 'application/json',
-    'Authorization': `Bearer ${this.AUTH_TOKEN}`,
+    'Authorization': `${authToken}`,
   })
 
   get(url: any, params: any = null): Observable<any> {

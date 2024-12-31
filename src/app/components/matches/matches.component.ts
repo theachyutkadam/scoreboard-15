@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -13,9 +13,15 @@ export class MatchesComponent {
   form_title = "Match"
   action_url = "matches"
   edit_match: any
+
   match_form_tags: any
   match_form!: FormGroup
 
+  //table head asc and desc variables
+  order: boolean = false
+  order_by: string = 'id'
+
+  //table data variables
   teams: any
   matches: any
   toss_dicission = [
@@ -44,9 +50,27 @@ export class MatchesComponent {
     this.getMatches()
   }
 
+  @ViewChild('filter') filter!: ElementRef;
+
+  getMatchesByOrder(order_by: string = "name", order: string = 'asc') {
+    if(this.order_by == order_by){
+      this.order = !this.order
+    } else{
+      this.order_by = order_by
+    }
+    this.getMatches(this.filter.nativeElement.value)
+  }
+
   getMatches(event: any= "upcomming"){
     let status= event.target ? event.target.value : event
-    let params = [{key: "status", value: status}]
+
+    // let params = [{key: "status", value: status}]
+    let params = [
+      {key: "status", value: status},
+      {key: "order_by", value: this.order_by},
+      {key: "order", value: this.order ? 'asc' : 'desc'}
+    ]
+
     this.http.get('matches', params).subscribe((response: any) => {
       this.matches = response.matches
     }, (err: any) => {this.apiError(err)})

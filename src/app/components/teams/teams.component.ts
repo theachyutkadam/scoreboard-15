@@ -72,7 +72,7 @@ export class TeamsComponent {
 
   setupPageTags(){
     this.team_form_tags = [
-      // { type: 'text', is_required: false, label: 'Name' , form_control_name: 'status' },
+      // { type: 'text', is_required: false, label: 'Status' , form_control_name: 'status' },
       { type: 'text', is_required: true, label: 'Name' , form_control_name: 'name' },
       { type: 'text', is_required: false, label: 'State' , form_control_name: 'state' },
       { type: 'text', is_required: true, label: 'City' , form_control_name: 'city' },

@@ -59,13 +59,9 @@ export class TeamsComponent {
     }, (err: any) => {this.apiError(err)})
   }
 
-  getTeamsByOrder(order_by: string = "name", order: string = 'asc') {
-    if(this.order_by == order_by){
-      this.order = !this.order
-    } else{
-      this.order_by = order_by
-    }
-
+  getTeamsByOrder(order_by: string = "name") {
+    this.order = !this.order
+    this.order_by = order_by
     this.getTeams(this.filter.nativeElement.value)
   }
 

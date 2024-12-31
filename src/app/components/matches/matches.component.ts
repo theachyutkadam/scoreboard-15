@@ -61,12 +61,9 @@ export class MatchesComponent {
 
   @ViewChild('filter') filter!: ElementRef;
 
-  getMatchesByOrder(order_by: string = "name", order: string = 'asc') {
-    if(this.order_by == order_by){
-      this.order = !this.order
-    } else{
-      this.order_by = order_by
-    }
+  getMatchesByOrder(order_by: string = "name") {
+    this.order = !this.order
+    this.order_by = order_by
     this.getMatches(this.filter.nativeElement.value)
   }
 

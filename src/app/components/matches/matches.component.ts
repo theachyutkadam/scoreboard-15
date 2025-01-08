@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { HttpService } from 'src/app/connections/http.service';
+import { CommonTaskService } from 'src/app/services/common/common-task.service';
 
 @Component({
   selector: 'app-matches',
@@ -23,14 +24,11 @@ export class MatchesComponent {
   //table data variables
   teams: any
   matches: any
-  toss_dicission = [
-    {"id": 'bating', "name": 'Bating'},
-    {"id": 'filding', "name": 'Filding'},
-  ]
 
   constructor(
     private http: HttpService,
     private toastr: ToastrService,
+    private _common: CommonTaskService,
   ) {}
 
   form_fields = {
@@ -99,7 +97,7 @@ export class MatchesComponent {
       { type: 'datetime-local', is_required: true, label: 'Start At' , form_control_name: 'start_at', value: this.edit_match == null ? new Date() : this.edit_match.start_at},
       { type: 'datetime-local', is_required: true, label: 'End At' , form_control_name: 'end_at', value: this.edit_match == null ? '' : this.edit_match.end_at},
       { type: 'select', is_required: true, label: 'Toss Winer Team' , form_control_name: 'toss_winer_team_id', dropdown: this!.teams},
-      { type: 'select', is_required: true, label: 'Toss Dicision' , form_control_name: 'toss_dicision', dropdown: this.toss_dicission },
+      { type: 'select', is_required: true, label: 'Toss Dicision' , form_control_name: 'toss_dicision', dropdown: this._common.toss_dicission },
       { type: 'text', is_required: true, label: 'Number Of Overs' , form_control_name: 'number_of_overs' },
       { type: 'checkbox', is_required: false, label: 'Is Draw' , form_control_name: 'is_draw' },
     ]

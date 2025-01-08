@@ -5,6 +5,11 @@ import { Injectable } from '@angular/core';
 })
 export class CommonTaskService {
   // dropdowns
+  toss_dicission = [
+    {"id": 'bating', "name": 'Bating'},
+    {"id": 'filding', "name": 'Filding'},
+  ]
+
   genders = [
     {"id": 'male', "name": 'Male'},
     {"id": 'female', "name": 'female'},

@@ -115,21 +115,6 @@
           <div class="">
             <h5 class="card-title fw-semibold">ScoreBook</h5>
           </div>
-          <!-- <div class="dropdown">
-            <button id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
-              class="rounded-circle btn-transparent rounded-circle btn-sm px-1 btn shadow-none">
-              <i class="ti ti-dots-vertical fs-7 d-block"></i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li>
-                <a class="dropdown-item" href="#">Another action</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </li>
-            </ul>
-          </div> -->
         </div>
         <div>
           <table class="table table-bordered table-striped">
@@ -145,6 +130,178 @@
           </table>
           <button class="btn btn-danger btn-sm">Undo</button>
           <button class="btn btn-danger btn-sm" (click)="swap(strike_batsman, non_strike_batsman)">Swap Batsman</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-lg-6">
+    <div class="row">
+      <div class="col-lg-12 col-sm-6">
+        <div class="mb-2"><span class="card-title fw-semibold">Delivery Information</span></div>
+        <div class="card overflow-hidden">
+          <div class="card-body p-4">
+            <div class="">
+              <form>
+                <div class="row input-group">
+                  <div class="col-lg-6">
+                    <label>First name</label>
+                    <input type="text" class="form-control" placeholder="Achyut">
+                  </div>
+                  <div class="col-lg-6">
+                    <label>Last name</label>
+                    <input type="text" class="form-control" placeholder="Achyut">
+                  </div>
+                </div>
+                <div class="row input-group  mt-2">
+                  <div class="col-lg-6">
+                    <label>Email</label>
+                    <input type="email" class="form-control" placeholder="achyut@gmail.com">
+                  </div>
+                  <div class="col-lg-6">
+                    <label>City</label>
+                    <input type="text" class="form-control" placeholder="Pune">
+                  </div>
+                </div>
+                <div class="row input-group  mt-2">
+                  <div class="col-lg-6">
+                    <label>State</label>
+                    <input type="text" class="form-control" placeholder="Maharashtra">
+                  </div>
+                  <div class="col-lg-3">
+                    <label>State Abbrevation</label>
+                    <input type="text" class="form-control" placeholder="MH">
+                  </div>
+                  <div class="col-lg-3">
+                    <label>Zip</label>
+                    <input type="text" class="form-control" placeholder="411057">
+                  </div>
+                </div>
+                <div class="row input-group mt-2">
+                  <div class="col-lg-12">
+                    <label>Address</label>
+                    <input type="email" class="form-control" placeholder="R16 Punawale 36">
+                  </div>
+                  </div>
+                <button class="btn btn-sm btn-primary mt-3">Save</button>
+              </form>
+            </div>
+           </div>
+        </div>
+        <div class="mb-2"><span class="card-title fw-semibold">Schduled Delivery</span></div>
+        <div class="card overflow-hidden">
+          <div class="card-body p-4">
+            <div class="">
+              <form>
+                <div class="row input-group">
+                  <div class="col-lg-6">
+                    <label>Dates</label>
+                    <input type="date" class="form-control">
+                  </div>
+                  <div class="col-lg-6">
+                    <label>Time</label>
+                    <input type="time" class="form-control">
+                  </div>
+                </div>
+                <div class="row input-group mt-2">
+                  <div class="col-lg-12">
+                    <label>Note</label>
+                    <input type="text" class="form-control" placeho>
+                  </div>
+                </div>
+                <button class="btn btn-sm btn-primary mt-3">Save</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="mb-2"><span class="card-title fw-semibold">Payment Method</span></div>
+        <div class="card overflow-hidden">
+          <div class="card-body p-4">
+            <div class="">
+              <form>
+                <div class="row input-group">
+                  <div class="col-lg-4">
+                    <input type="radio" class="form-check-input">&nbsp;&nbsp;
+                    <label>UPI</label>
+                  </div>
+                  <div class="col-lg-4">
+                    <input type="radio" class="form-check-input">&nbsp;&nbsp;
+                    <label>Net Banking</label>
+                  </div>
+                  <div class="col-lg-4">
+                    <input type="radio" class="form-check-input">&nbsp;&nbsp;
+                    <label>Cash On Delivery</label>
+                  </div>
+                </div>
+                <button class="btn btn-sm btn-primary mt-4">Save</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <span class="card-title fw-semibold">Order Summary</span> -->
+  <div class="col-lg-6 d-flex align-items-strech">
+    <div class="card w-100">
+      <div class="card-body">
+        <h4>Order Summary</h4>
+        <div class="d-flex align-items-center justify-content-between mb-10">
+          <div class="col-lg-12">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Name</th>
+                  <!-- <th>Price</th> -->
+                  <th>Qty</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td> <img src="../../../assets/images/products/s4.jpg" style="width: 80px; height: 80px;"> </td>
+                  <td>
+                    Headphone<br>
+                    Rs.2899
+                  </td>
+                  <td>
+                    <button class="btn btn-sm btn-primary p-4" (click)="changeQuntity(product1_quntity - 1, 1)"> - </button>
+                    &nbsp;&nbsp;{{product1_quntity}}&nbsp;&nbsp;
+                    <button class="btn btn-sm btn-primary" (click)="changeQuntity(product1_quntity + 1, 1)"> + </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td> <img src="../../../assets/images/products/s7.jpg" style="width: 80px; height: 80px;"> </td>
+                  <td>Red Dress<br>
+                    Rs.2899
+                  </td>
+                  <td>
+                    <button class="btn btn-sm btn-primary" (click)="changeQuntity(product2_quntity - 1, 2)"> - </button>
+                    &nbsp;&nbsp;{{product2_quntity}}&nbsp;&nbsp;
+                    <button class="btn btn-sm btn-primary" (click)="changeQuntity(product2_quntity + 1, 2)"> + </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td> <img src="../../../assets/images/products/s11.jpg" style="width: 80px; height: 80px;"> </td>
+                  <td>Teddy<br>
+                    Rs.2899
+                  </td>
+                  <td>
+                    <button class="btn btn-sm btn-primary" (click)="changeQuntity(product3_quntity - 1, 3)"> - </button>
+                    &nbsp;&nbsp;{{product3_quntity}}&nbsp;&nbsp;
+                    <button class="btn btn-sm btn-primary" (click)="changeQuntity(product3_quntity + 1, 3)"> + </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

@@ -55,7 +55,7 @@ export class ProfileComponent {
   ngOnInit(){ this.getUserProfile() }
 
   getUserProfile(){
-    this.http.get('players/2', '').subscribe((response: any) => {
+    this.http.get('players/3', '').subscribe((response: any) => {
       this.editUser(response.player)
     })
   }

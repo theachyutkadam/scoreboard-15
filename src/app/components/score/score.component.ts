@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { bindCallback } from 'rxjs';
 import { HttpService } from 'src/app/connections/http.service';
 
 @Component({
@@ -49,6 +50,9 @@ export class ScoreComponent {
   swap(strike_batsman: string, non_strike_batsman: string){
     this.strike_batsman = non_strike_batsman
     this.non_strike_batsman = strike_batsman
+
+    let list = [10, 30, 35, 20, 30, 25, 90, 89];
+    this.findSecondHighestNumber(list)
   }
 
   changeQuntity(value: number, product_number: number){
@@ -68,4 +72,23 @@ export class ScoreComponent {
       this.product3_quntity = value
     }
   }
+
+  findSecondHighestNumber(array_list: any) {
+    let max = 0
+    let second_max = 0
+
+    for(let i = 0; i < array_list.length; i++){
+      if (array_list[i] > max){
+        max = array_list[i]
+      }
+    }
+    for(let i = 0; i < array_list.length; i++){
+      if (array_list[i] > second_max && array_list[i] != max){
+        second_max = array_list[i]
+      }
+    }
+    console.log('Max number is-->', max);
+    console.log('Second Max number is-->', second_max);
+  }
+
 }

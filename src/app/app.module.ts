@@ -4,8 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegistrationComponent } from './components/registration/registration.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { MatchesComponent } from './components/matches/matches.component';
 import { SidebarComponent } from './common/sidebar/sidebar.component';
@@ -22,13 +20,12 @@ import { UsersComponent } from './components/users/users.component';
 import { SpinnerComponent } from './common/spinner/spinner.component';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { ScoreComponent } from './components/score/score.component';
+import { AuthenticationModule } from './modules/authentication/authentication.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    LoginComponent,
-    RegistrationComponent,
     ProfileComponent,
     MatchesComponent,
     SidebarComponent,
@@ -46,7 +43,7 @@ import { ScoreComponent } from './components/score/score.component';
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    // DatePipe,
+    AuthenticationModule,
 
     CommonModule,
     BrowserAnimationsModule,
@@ -66,4 +63,6 @@ import { ScoreComponent } from './components/score/score.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(){console.log('--app module->');}
+}

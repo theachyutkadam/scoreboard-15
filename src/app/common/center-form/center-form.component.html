@@ -44,7 +44,7 @@
             </div>
 
             <div *ngIf="field.type == 'select' ">
-              <select class="form-control" [formControlName]="field.form_control_name">
+              <select class="form-control" [formControlName]="field.form_control_name" (change)="changeDropdown($event, field.form_control_name)">
                 <option value="">Select {{field.label}}</option>
                 <option *ngFor="let object of field.dropdown" [value]="object.id">
                   {{ object.name }}

@@ -20,6 +20,7 @@ export class CenterFormComponent {
   @Input() edit: any
   @Input() reset_btn: any = true
 
+  @Output() setTeam = new EventEmitter<{team_id: any, field: string}>()
   @Output() formData = new EventEmitter<{form: any, action: string}>()
 
   input_options = ['text', 'date', 'password', 'email', 'number']
@@ -29,7 +30,7 @@ export class CenterFormComponent {
     private router: Router,
   ) { }
 
-  ngOnChanges() { this.ngOnInit() }
+  ngOnChanges() {this.ngOnInit()}
 
   ngOnInit() {
     this.initializeForm()
@@ -53,4 +54,5 @@ export class CenterFormComponent {
   initializeForm() {this.center_form = this.fb.group(this.form_fields_validation)}
   editForm(object: any){ this.center_form.patchValue(object) }
   saveForm(){ this.formData.emit({form: this.center_form.value, action: this.action}) }
+  changeDropdown(event: any, filed: any){ this.setTeam.emit({team_id: event.target.value, field: filed})}
 }

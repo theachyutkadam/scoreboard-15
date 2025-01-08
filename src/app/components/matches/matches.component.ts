@@ -69,7 +69,7 @@ export class MatchesComponent {
   getMatchesByOrder(event: any = "name") {
     console.log('-CT sort-->', event);
     this.order = !this.order
-    this.order_by = event.sort_by
+    this.order_by = event.sort_by == "name" ? 'team1_id' : event.sort_by
     this.getMatches(event.filter)
   }
 

@@ -16,6 +16,10 @@ export class ScoreComponent {
   strike_batsman: any = "Suresh Raina"
   non_strike_batsman: any = "M.S Dhoni"
 
+  product1_quntity = 1
+  product2_quntity = 1
+  product3_quntity = 1
+
   constructor(
     private fb: FormBuilder,
     private http: HttpService,
@@ -49,6 +53,24 @@ export class ScoreComponent {
 
     let list = [10, 30, 35, 20, 30, 25, 90, 89, 35, 20];
     this.findSecondHighestNumber(list)
+  }
+
+  changeQuntity(value: number, product_number: number){
+    if(value == 0){
+      this.toastr.info("Minimum 1 Qty required", 'Info')
+      return
+    }
+    if(value == 11){
+      this.toastr.warning("Maximum 10 Qty allowed", 'Warning')
+      return
+    }
+    if(product_number == 1){
+      this.product1_quntity = value
+    } else if(product_number == 2){
+      this.product2_quntity = value
+    } else {
+      this.product3_quntity = value
+    }
   }
 
   findSecondHighestNumber(array_list: any) {

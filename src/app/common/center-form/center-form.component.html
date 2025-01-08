@@ -19,12 +19,7 @@
 
             <div *ngIf="field.type == 'checkbox'">
               <input type="checkbox" class="form-check-input" [formControlName]="field.form_control_name">
-              <div
-                *ngIf="center_form.get(field.form_control_name)?.touched && center_form.get(field.form_control_name)?.invalid && field.is_required">
-                <small class="error-message" *ngIf="center_form.get(field.form_control_name)?.errors?.['required']">
-                  {{field.label}} is required.
-                </small>
-              </div>
+              <ng-container *ngTemplateOutlet="error"></ng-container>
             </div>
 
             <div *ngIf="field.type == 'radio'">
@@ -34,33 +29,18 @@
                   [checked]="center_form.get(field.form_control_name).value == 'yes' ? true : false">
                 <label for="{{option.value+i}}">{{option.name}}</label>
               </div>
-              <div
-                *ngIf="center_form.get(field.form_control_name)?.touched && center_form.get(field.form_control_name)?.invalid && field.is_required">
-                <small class="error-message" *ngIf="center_form.get(field.form_control_name)?.errors?.['required']">
-                  {{field.label}} is required.
-                </small>
-              </div>
+              <ng-container *ngTemplateOutlet="error"></ng-container>
             </div>
 
             <div *ngIf="field.type == 'datetime-local'">
               <input type="datetime-local" class="form-control" [formControlName]="field.form_control_name">
-              <div
-                *ngIf="center_form.get(field.form_control_name)?.touched && center_form.get(field.form_control_name)?.invalid && field.is_required">
-                <small class="error-message" *ngIf="center_form.get(field.form_control_name)?.errors?.['required']">
-                  {{field.label}} is required.
-                </small>
-              </div>
+              <ng-container *ngTemplateOutlet="error"></ng-container>
             </div>
 
             <div *ngIf="input_options.includes(field.type)">
               <input [attr.type]="field.type" [formControlName]="field.form_control_name" [attr.placeholder]="field.label"
                 class="form-control">
-              <div
-                *ngIf="center_form.get(field.form_control_name)?.touched && center_form.get(field.form_control_name)?.invalid && field.is_required">
-                <small class="error-message" *ngIf="center_form.get(field.form_control_name)?.errors?.['required']">
-                  {{field.label}} is required.
-                </small>
-              </div>
+              <ng-container *ngTemplateOutlet="error"></ng-container>
             </div>
 
             <div *ngIf="field.type == 'select' ">
@@ -70,13 +50,17 @@
                   {{ object.name }}
                 </option>
               </select>
+              <ng-container *ngTemplateOutlet="error"></ng-container>
+            </div>
+
+            <ng-template #error>
               <div
                 *ngIf="center_form.get(field.form_control_name)?.touched && center_form.get(field.form_control_name)?.invalid && field.is_required">
                 <small class="error-message" *ngIf="center_form.get(field.form_control_name)?.errors?.['required']">
                   {{field.label}} is required.
                 </small>
               </div>
-            </div>
+            </ng-template>
           </div>
         </div>
       </form>

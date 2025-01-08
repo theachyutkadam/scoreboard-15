@@ -1,1 +1,39 @@
-<p>center-table works!</p>
+<div class="table-responsive"  style="height: 500px; overflow: scroll;">
+  <div class="float-end" (change)="filterBy($event)">
+    <select class="form-control" #filter_value>
+      <option *ngFor="let data of filter_options" [value]="data.value">{{data.name}}</option>
+    </select>
+  </div>
+  <h5 class="mt-2">Matches</h5>
+  <table class="table table-striped table-hover table-bordered table-sm">
+    <thead>
+      <tr>
+        <th class="cursor-pointer" *ngFor="let header of headers; let last = last" (click)="sortBy(header.field)">
+          {{header.name}}
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up float-end" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5m-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5"/>
+          </svg>
+        </th>
+        <th colspan="2">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let record of records">
+
+        <td *ngFor="let header of headers">
+          <ng-container *ngIf="header.type == 'date-time'">
+            {{record[header.field] | date: 'MMM d, y, h:mm:ss a'}}
+          </ng-container>
+          <ng-container *ngIf="header.type == 'string'">
+            {{record[header.field] | titlecase}}
+          </ng-container>
+          <ng-container *ngIf="header.type == 'number' || header.type == 'object'">
+            {{record[header.field]}}
+          </ng-container>
+        </td>
+        <td><button (click)="sendAction('Edit', record.id)" class="btn btn-sm btn-warning">Edit</button></td>
+        <td><button (click)="sendAction('Delete', record.id)" class="btn btn-sm btn-danger">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

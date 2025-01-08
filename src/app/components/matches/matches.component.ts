@@ -1,6 +1,5 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
+import { FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { HttpService } from 'src/app/connections/http.service';
 
@@ -10,8 +9,6 @@ import { HttpService } from 'src/app/connections/http.service';
   styleUrls: ['./matches.component.css']
 })
 export class MatchesComponent {
-  @ViewChild('filter') filter!: ElementRef;
-
   form_title = "Match"
   action_url = "matches"
   edit_match: any
@@ -48,12 +45,20 @@ export class MatchesComponent {
   }
 
   headers = [
-    {name: "ID", order: 'id'},
-    {name: "Match", order: 'team1_id'},
-    {name: "No.Of.Overs", order: 'number_of_overs'},
-    {name: "Start At", order: 'start_at'},
-    {name: "End At", order: 'end_at'},
-    {name: "Status", order: 'status'},
+    {name: "ID", field: 'id', type: 'number'},
+    {name: "Match", field: 'name', type: 'object'},
+    {name: "No.Of.Overs", field: 'number_of_overs', type: 'number'},
+    {name: "Start At", field: 'start_at', type: 'date-time'},
+    {name: "End At", field: 'end_at', type: 'date-time'},
+    {name: "Status", field: 'status', type: 'string'},
+  ]
+
+  filter_options = [
+    {name: "Upcomming", value: "upcomming"},
+    {name: "Active", value: "active"},
+    {name: "Finished", value: "finished"},
+    {name: "Draw", value: "draw"},
+    {name: "All", value: ""},
   ]
 
   ngOnInit() {
@@ -61,16 +66,16 @@ export class MatchesComponent {
     this.getMatches()
   }
 
-  getMatchesByOrder(order_by: string = "name") {
+  getMatchesByOrder(event: any = "name") {
+    console.log('-CT sort-->', event);
     this.order = !this.order
-    this.order_by = order_by
-    this.getMatches(this.filter.nativeElement.value)
+    this.order_by = event.sort_by == "name" ? 'team1_id' : event.sort_by
+    this.getMatches(event.filter)
   }
 
   getMatches(event: any= "upcomming"){
-    let status= event.target ? event.target.value : event
     let params = [
-      {key: "status", value: status},
+      {key: "status", value: event},
       {key: "order_by", value: this.order_by},
       {key: "order", value: this.order ? 'asc' : 'desc'}
     ]
@@ -130,6 +135,10 @@ export class MatchesComponent {
     this.getMatches()
     this.edit_match = null
     this.toastr.success(msg, 'Success!');
+  }
+
+  tableAction(event: any){
+    event.action == 'Edit' ? this.editMatch(event.record_id) : this.deleteMatch(event.record_id)
   }
 
   editMatch(match_id: any){

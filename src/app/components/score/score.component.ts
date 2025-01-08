@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -42,6 +42,10 @@ export class ScoreComponent {
     non_strick_batsman_id: ['', Validators.required],
     strick_batsman_id: ['', Validators.required],
   }
+
+  // @HostListener('click') showAlert(){
+  //   alert("click")
+  // }
 
   resert(){ this.initializeForm() }
   ngOnInit() { this.initializeForm() }

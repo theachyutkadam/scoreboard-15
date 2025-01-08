@@ -76,19 +76,7 @@
   </div>
 </div> -->
 
-<!-- <input type="datetime-local" class="form-control" value="2017-06-01T08:30"> -->
-
-<app-center-form
-  *ngIf="teams"
-  [form_fields_validation]="form_fields"
-  [center_form_tags]="match_form_tags"
-  [action_url]="action_url"
-  [form_title]="form_title"
-  [edit]="edit_match"
-  (formData)="setPayload($event)"
-  >
-</app-center-form>
-
+<!--
 <div class="table-responsive"  style="height: 500px; overflow: scroll;">
   <div class="float-end" (change)="getMatches($event)">
     <select class="form-control" #filter>
@@ -102,7 +90,7 @@
   <h5 class="mt-2">Matches</h5>
   <table class="table table-striped table-hover table-bordered table-sm">
     <thead>
-      <!-- <tr>
+      <tr>
         <th class="cursor-pointer" (click)="getMatchesByOrder('id')">#ID
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up float-end" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5m-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5"/>
@@ -134,15 +122,6 @@
           </svg>
         </th>
         <th colspan="2">Action</th>
-      </tr> -->
-      <tr>
-        <th class="cursor-pointer" *ngFor="let header of headers; let last = last" (click)="getMatchesByOrder(header.order)">
-          {{header.name}}
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up float-end" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5m-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5"/>
-          </svg>
-        </th>
-        <th colspan="2">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -159,4 +138,26 @@
       </tr>
     </tbody>
   </table>
-</div>
+</div> -->
+
+<app-center-form
+  *ngIf="teams"
+  [form_fields_validation]="form_fields"
+  [center_form_tags]="match_form_tags"
+  [action_url]="action_url"
+  [form_title]="form_title"
+  [edit]="edit_match"
+  (formData)="setPayload($event)"
+  >
+</app-center-form>
+
+<app-center-table
+  *ngIf="matches"
+  [headers]="headers"
+  [records]="matches"
+  [filter_options]="filter_options"
+  (action)="tableAction($event)"
+  (filter)="getMatches($event)"
+  (sort)="getMatchesByOrder($event)"
+  >
+</app-center-table>

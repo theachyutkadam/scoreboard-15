@@ -47,7 +47,7 @@ export class ScoreComponent {
     this.strike_batsman = non_strike_batsman
     this.non_strike_batsman = strike_batsman
 
-    let list = [10, 30, 35, 20, 30, 25, 90, 89];
+    let list = [10, 30, 35, 20, 30, 25, 90, 89, 35, 20];
     this.findSecondHighestNumber(list)
   }
 
@@ -67,6 +67,20 @@ export class ScoreComponent {
     }
     console.log('Max number is-->', max);
     console.log('Second Max number is-->', second_max);
+
+
+    this.findDuplicate(array_list)
+    // let strings = ["a","b","c","d","d","e","a","b","c","f","g","h","h","h","e","a"]
+    // this.findDuplicate(strings)
   }
 
+  findDuplicate(array_list: any){
+    let answer = array_list.reduce((key: any, value: any) => ({
+      ...key,
+      [value]: (key[value] || 0) +1
+    }), {})
+
+    console.log('-array list-->', array_list);
+    console.log('-array answer-->', answer);
+  }
 }

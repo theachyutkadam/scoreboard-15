@@ -44,6 +44,12 @@
 
             <div *ngIf="field.type == 'datetime-local'">
               <input type="datetime-local" class="form-control" [formControlName]="field.form_control_name">
+              <div
+                *ngIf="center_form.get(field.form_control_name)?.touched && center_form.get(field.form_control_name)?.invalid && field.is_required">
+                <small class="error-message" *ngIf="center_form.get(field.form_control_name)?.errors?.['required']">
+                  {{field.label}} is required.
+                </small>
+              </div>
             </div>
 
             <div *ngIf="input_options.includes(field.type)">

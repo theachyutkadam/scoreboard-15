@@ -27,6 +27,7 @@ export class LoginComponent {
   ngOnInit() {
     this.patchFakeUser()
     this.initializeForm()
+    this.learnPromise()
   }
 
   patchFakeUser(){
@@ -64,5 +65,53 @@ export class LoginComponent {
 
   error(response: any){
     this.toastr.error(response.errors, 'Error!');
+  }
+
+  dell = {
+    brand: "Dell",
+    hardisk: "2TB",
+    color: "silver",
+  }
+  hp = {
+    brand: "HP",
+    hardisk: "1TB",
+    color: "white",
+  }
+  not_available = {
+    status: "Stock not available"
+  }
+  dellLaptop(){ return false }
+
+  hpLaptop(){ return false }
+
+  laptop: any
+  learnPromise(){
+    let byLaptop = new Promise((resolve: any, reject: any) => {
+      // resolve("promise worked!")
+      if(this.dellLaptop()){
+        setTimeout(() =>{
+          // resolve("Dell laptop purchesed!")
+          resolve(this.dell)
+        }, 3000)
+      } else if(this.hpLaptop()){
+        setTimeout(() =>{
+          // resolve("HP laptop purchesed!")
+          resolve(this.hp)
+        }, 3000)
+      } else {
+        setTimeout(() =>{
+          // reject("Laptop is not availabe on store")
+          reject(this.not_available)
+        }, 3000)
+      }
+    })
+
+    byLaptop.then(res => {
+      console.log('-Then code-->', res);
+      this.laptop = res
+    }).catch(rej => {
+      console.log('-Catch code-->', rej);
+      this.laptop = rej
+    })
   }
 }

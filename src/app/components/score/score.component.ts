@@ -43,10 +43,6 @@ export class ScoreComponent {
     strick_batsman_id: ['', Validators.required],
   }
 
-  // @HostListener('click') showAlert(){
-  //   alert("click")
-  // }
-
   resert(){ this.initializeForm() }
   ngOnInit() { this.initializeForm() }
   initializeForm(){ this.score_form = this.fb.group(this.form_fields) }

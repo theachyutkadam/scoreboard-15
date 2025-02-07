@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpService } from 'src/app/connections/http.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-center-form',
@@ -27,8 +28,10 @@ export class CenterFormComponent {
     private fb: FormBuilder,
     private http: HttpService,
     private router: Router,
+    private _location: Location
   ) { }
 
+  back(){this._location.back()}
   ngOnChanges() { this.ngOnInit() }
 
   ngOnInit() {

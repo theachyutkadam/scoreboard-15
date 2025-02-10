@@ -8,7 +8,18 @@
   >
 </app-center-form>
 
-<div class="table-responsive">
+<app-center-table
+  *ngIf="users"
+  [headers]="headers"
+  [records]="users"
+  [filter_options]="filter_options"
+  (action)="tableAction($event)"
+  (filter)="getPlayers($event)"
+  (sort)="getPlayersByOrder($event)"
+  >
+</app-center-table>
+
+<!-- <div class="table-responsive">
   <div id="alt_pagination_wrapper" class="dataTables_wrapper">
     <h4><strong> Users </strong></h4>
     <table id="alt_pagination" class="table table-striped table-bordered display text-nowrap dataTable"
@@ -40,4 +51,4 @@
       </tbody>
     </table>
   </div>
-</div>
+</div> -->

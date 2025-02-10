@@ -25,7 +25,6 @@ export class UsersComponent {
   users: any
 
   form_fields = {
-    // email: ['', Validators.required],
     first_name: ['', Validators.required],
     middle_name: [''],
     last_name: ['', Validators.required],
@@ -36,7 +35,6 @@ export class UsersComponent {
   }
 
   user_form_tags = [
-    // { type: 'email', is_required: true, label: 'Email' , form_control_name: 'email' },
     { type: 'text', is_required: true, label: 'First Name' , form_control_name: 'first_name' },
     { type: 'text', is_required: false, label: 'Middle Name' , form_control_name: 'middle_name' },
     { type: 'text', is_required: true, label: 'Last Name' , form_control_name: 'last_name' },
@@ -51,9 +49,9 @@ export class UsersComponent {
     {name: "Name", field: 'name', type: 'string'},
     {name: "Email", field: 'email', type: 'object'},
     {name: "Contact", field: 'contact', type: 'string'},
+    {name: "Birth Date", field: 'birth_date', type: 'date'},
     {name: "Speciality", field: 'speciality', type: 'string'},
     {name: "Gender", field: 'gender', type: 'string'},
-    // {name: "Status", field: 'user.status', type: 'object'},
   ]
 
   filter_options = [
@@ -91,7 +89,6 @@ export class UsersComponent {
 
   setPayload(event: any){
     let payload = {
-      // "email"      : event.form.email,
       "first_name" : event.form.first_name,
       "middle_name": event.form.middle_name,
       "last_name"  : event.form.last_name,

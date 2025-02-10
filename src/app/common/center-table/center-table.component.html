@@ -24,6 +24,9 @@
           <ng-container *ngIf="header.type == 'date-time'">
             {{record[header.field] | date: 'MMM d, y, h:mm:ss a'}}
           </ng-container>
+          <ng-container *ngIf="header.type == 'date'">
+            {{record[header.field] | date: 'MMM d, y'}}
+          </ng-container>
           <ng-container *ngIf="header.type == 'string'">
             {{record[header.field] | titlecase}}
           </ng-container>

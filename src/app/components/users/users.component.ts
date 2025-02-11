@@ -23,6 +23,7 @@ export class UsersComponent {
 
   //table data variables
   users: any
+  user_listing: any
 
   form_fields = {
     first_name: ['', Validators.required],
@@ -42,6 +43,7 @@ export class UsersComponent {
     { type: 'date', is_required: true, label: 'Birth Date' , form_control_name: 'birth_date' },
     { type: 'select', is_required: true, label: 'Gender' , form_control_name: 'gender', dropdown: this.common.genders },
     { type: 'select', is_required: true, label: 'Speciality' , form_control_name: 'speciality', dropdown: this.common.specialities},
+    { type: 'select', is_required: true, label: 'User' , form_control_name: 'user_id', dropdown: this!.user_listing},
   ]
 
   headers = [
@@ -67,7 +69,10 @@ export class UsersComponent {
     private common: CommonTaskService
   ){}
 
-  ngOnInit(){ this.getPlayers() }
+  ngOnInit(){
+    this.getUsers()
+    this.getPlayers()
+  }
 
   getPlayersByOrder(event: any = "first_name") {
     console.log('-CT sort-->', event);
@@ -87,6 +92,12 @@ export class UsersComponent {
     })
   }
 
+  getUsers(){
+    this.http.get('users', '').subscribe((response: any) => {
+      this.user_listing = response.users
+    })
+  }
+
   setPayload(event: any){
     let payload = {
       "first_name" : event.form.first_name,
@@ -96,7 +107,7 @@ export class UsersComponent {
       "birth_date" : event.form.birth_date,
       "gender"     : event.form.gender,
       "speciality" : event.form.speciality,
-      "user_id"    : this.user_id,
+      "user_id"    : event.action == 'New' ? '' : this.user_id,
     }
     event.action == 'New' ? this.create(payload) : this.update(payload)
   }

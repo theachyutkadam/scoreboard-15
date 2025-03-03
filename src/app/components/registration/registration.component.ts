@@ -17,8 +17,8 @@ export class RegistrationComponent {
     password: ['',
       [
         Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(12),
+        // Validators.minLength(6),
+        // Validators.maxLength(12),
       ],
     ],
     confirm_password: ['', Validators.required],
@@ -38,7 +38,7 @@ export class RegistrationComponent {
 
   patchFakeUser(){
     this.registration_form.patchValue({
-      "email": "admin@mailinator.com",
+      "email": "adminmailinator.com",
       "password": '11223344',
       "confirm_password": '11223344'
     })
@@ -56,8 +56,10 @@ export class RegistrationComponent {
 
   setPayload(form: any){
     let payload = {
-      "email" : form.email,
-      "password" : form.password
+      "email"    : form.email,
+      "status"   : 1,
+      "role_id"  : 1,
+      "password" : form.password,
     }
     return payload
   }

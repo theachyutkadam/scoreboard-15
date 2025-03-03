@@ -18,5 +18,5 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
   ],
 })
 export class AuthenticationModule {
-  constructor(){console.log('--auth module->');}
+  constructor(){}
 }

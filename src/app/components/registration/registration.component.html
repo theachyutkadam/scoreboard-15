@@ -25,7 +25,7 @@
                   <label for="password" class="form-label">Password</label>
                   <input type="password" class="form-control" formControlName="password" id="password">
                   <div *ngIf="registration_form.get('password')?.touched && registration_form.get('password')?.invalid">
-                    <small *ngIf="registration_form.get('password')?.errors?.['required']" class="error-message">
+                    <!-- <small *ngIf="registration_form.get('password')?.errors?.['required']" class="error-message">
                       Password is required.
                     </small>
                     <small *ngIf="registration_form.get('password')?.errors?.['minlength']" class="error-message">
@@ -33,7 +33,7 @@
                     </small>
                     <small *ngIf="registration_form.get('password')?.errors?.['maxlength']" class="error-message">
                       Password can't be longer than 12 characters!
-                    </small>
+                    </small> -->
                   </div>
                 </div>
 
@@ -41,12 +41,12 @@
                   <label for="confirm_password" class="form-label">Confirm Password</label>
                   <input type="password" class="form-control" formControlName="confirm_password" id="confirm_password" placeholder="Enter Confirm Password">
                   <div *ngIf="registration_form.get('confirm_password')?.touched">
-                    <small *ngIf="registration_form.hasError('mismatch')" class="error-message">
+                    <!-- <small *ngIf="registration_form.hasError('mismatch')" class="error-message">
                       Confirm password should match with Password!
                     </small>
                     <small *ngIf="registration_form.get('confirm_password')?.errors?.['required']" class="error-message">
                       Confirm Password is required.
-                    </small>
+                    </small> -->
                   </div>
                 </div>
 

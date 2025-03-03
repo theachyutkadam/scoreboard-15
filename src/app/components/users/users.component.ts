@@ -89,6 +89,7 @@ export class UsersComponent {
     ]
     this.http.get('players', params).subscribe((response: any) => {
       this.users = response.players
+      // this.users = response.players.sort((a: any, b:any) => a.contact - b.contact)
     })
   }
 

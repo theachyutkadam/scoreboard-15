@@ -64,5 +64,5 @@ import { AuthenticationModule } from './modules/authentication/authentication.mo
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(){console.log('--app module->');}
+  constructor(){}
 }

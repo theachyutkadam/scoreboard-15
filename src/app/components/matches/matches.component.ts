@@ -80,14 +80,14 @@ export class MatchesComponent {
 
     this.http.get('matches', params).subscribe((response: any) => {
       this.matches = response.matches
-    }, (err: any) => {this.apiError(err)})
+    })
   }
 
   getTeams(){
     this.http.get('teams', '').subscribe((response: any) => {
       this.teams = response.teams
       this.setupPageTags()
-    }, (err: any) => {this.apiError(err)})
+    })
   }
 
   setupPageTags(){
@@ -120,13 +120,13 @@ export class MatchesComponent {
   create(payload: any){
     this.http.post('matches', payload).subscribe((response: any) => {
       this.afterSave("Match Create!")
-    }, (err: any) => {this.apiError(err)})
+    })
   }
 
   update(payload: any){
     this.http.patch('matches/'+this.edit_match.id, payload).subscribe((response: any) => {
       this.afterSave("Match Update!")
-    }, (err: any) => {this.apiError(err)})
+    })
   }
 
   afterSave(msg: string){
@@ -146,7 +146,7 @@ export class MatchesComponent {
         response.match.end_at = new Date(response.match.end_at).toISOString().slice(0, 16);
       }
       this.edit_match = response.match
-    }, (err: any) => {this.apiError(err)})
+    })
   }
 
   deleteMatch(match_id: any){
@@ -154,11 +154,11 @@ export class MatchesComponent {
       this.getMatches()
       this.edit_match = null
       this.toastr.error("Match Deleted", 'Destroy!');
-    }, (err: any) => {this.apiError(err)})
+    })
   }
 
-  apiError(err: any){
-    console.error(err)
-    this.toastr.error(err.message, 'Error!');
-  }
+  // apiError(err: any){
+  //   console.error(err)
+  //   this.toastr.error(err.message, 'Error!');
+  // }
 }

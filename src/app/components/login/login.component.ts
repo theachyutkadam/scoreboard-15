@@ -27,7 +27,7 @@ export class LoginComponent {
   ngOnInit() {
     this.patchFakeUser()
     this.initializeForm()
-    this.learnPromise()
+    // this.learnPromise()
   }
 
   patchFakeUser(){
@@ -48,11 +48,7 @@ export class LoginComponent {
   login(){
     this.http.post('users/login', this.setPayload(this.login_form.value)).subscribe((response: any) => {
       console.log('login--->', response);
-      // response.status == 200 ? this.afterLogin(response) : this.error(response)
-      this.afterLogin(response)
-    }, (err: any) => {
-      console.error(err)
-      this.toastr.error(err.message, 'Error!');
+      response.status == 200 ? this.afterLogin(response) : ''
     })
   }
 
@@ -63,55 +59,55 @@ export class LoginComponent {
     this.toastr.success(response.user_details.email, 'Welcome!');
   }
 
-  error(response: any){
-    this.toastr.error(response.errors, 'Error!');
-  }
+  // error(response: any){
+  //   this.toastr.error(response.errors, 'Error!');
+  // }
 
-  dell = {
-    brand: "Dell",
-    hardisk: "2TB",
-    color: "silver",
-  }
-  hp = {
-    brand: "HP",
-    hardisk: "1TB",
-    color: "white",
-  }
-  not_available = {
-    status: "Stock not available"
-  }
-  dellLaptop(){ return false }
+  // dell = {
+  //   brand: "Dell",
+  //   hardisk: "2TB",
+  //   color: "silver",
+  // }
+  // hp = {
+  //   brand: "HP",
+  //   hardisk: "1TB",
+  //   color: "white",
+  // }
+  // not_available = {
+  //   status: "Stock not available"
+  // }
+  // dellLaptop(){ return false }
 
-  hpLaptop(){ return false }
+  // hpLaptop(){ return false }
 
-  laptop: any
-  learnPromise(){
-    let byLaptop = new Promise((resolve: any, reject: any) => {
-      // resolve("promise worked!")
-      if(this.dellLaptop()){
-        setTimeout(() =>{
-          // resolve("Dell laptop purchesed!")
-          resolve(this.dell)
-        }, 3000)
-      } else if(this.hpLaptop()){
-        setTimeout(() =>{
-          // resolve("HP laptop purchesed!")
-          resolve(this.hp)
-        }, 3000)
-      } else {
-        setTimeout(() =>{
-          // reject("Laptop is not availabe on store")
-          reject(this.not_available)
-        }, 3000)
-      }
-    })
+  // laptop: any
+  // learnPromise(){
+  //   let byLaptop = new Promise((resolve: any, reject: any) => {
+  //     // resolve("promise worked!")
+  //     if(this.dellLaptop()){
+  //       setTimeout(() =>{
+  //         // resolve("Dell laptop purchesed!")
+  //         resolve(this.dell)
+  //       }, 3000)
+  //     } else if(this.hpLaptop()){
+  //       setTimeout(() =>{
+  //         // resolve("HP laptop purchesed!")
+  //         resolve(this.hp)
+  //       }, 3000)
+  //     } else {
+  //       setTimeout(() =>{
+  //         // reject("Laptop is not availabe on store")
+  //         reject(this.not_available)
+  //       }, 3000)
+  //     }
+  //   })
 
-    byLaptop.then(res => {
-      console.log('-Then code-->', res);
-      this.laptop = res
-    }).catch(rej => {
-      console.log('-Catch code-->', rej);
-      this.laptop = rej
-    })
-  }
+  //   byLaptop.then(res => {
+  //     console.log('-Then code-->', res);
+  //     this.laptop = res
+  //   }).catch(rej => {
+  //     console.log('-Catch code-->', rej);
+  //     this.laptop = rej
+  //   })
+  // }
 }

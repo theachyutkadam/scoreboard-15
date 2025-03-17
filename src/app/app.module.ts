@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +21,7 @@ import { SpinnerComponent } from './common/spinner/spinner.component';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { ScoreComponent } from './components/score/score.component';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
+import { ErrorInterceptor } from './connections/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,11 @@ import { AuthenticationModule } from './modules/authentication/authentication.mo
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoaderInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
       multi: true,
     }
   ],

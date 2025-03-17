@@ -58,7 +58,7 @@ export class TeamsComponent {
     this.http.get('players', '').subscribe((response: any) => {
       this.players = response.players
       this.setupPageTags()
-    }, (err: any) => {this.apiError(err)})
+    })
   }
 
   getTeamsByOrder(order_by: string = "name") {
@@ -77,7 +77,7 @@ export class TeamsComponent {
 
     this.http.get('teams', params).subscribe((response: any) => {
       this.teams = response.teams
-    }, (err: any) => {this.apiError(err)})
+    })
   }
 
   setupPageTags(){
@@ -109,13 +109,13 @@ export class TeamsComponent {
   create(payload: any){
     this.http.post('teams', payload).subscribe((response: any) => {
       this.afterSave("Team Create!")
-    }, (err: any) => {this.apiError(err)})
+    })
   }
 
   update(payload: any){
     this.http.patch('teams/'+this.edit_team.id, payload).subscribe((response: any) => {
       this.afterSave("Team Update!")
-    }, (err: any) => {this.apiError(err)})
+    })
   }
 
   afterSave(msg: string){
@@ -127,7 +127,7 @@ export class TeamsComponent {
   editTeam(team_id: any){
     this.http.get('teams/'+team_id, '').subscribe((response: any) => {
       this.edit_team = response.team
-    }, (err: any) => {this.apiError(err)})
+    })
   }
 
   deleteTeam(team_id: any){
@@ -135,11 +135,6 @@ export class TeamsComponent {
       this.getTeams()
       this.edit_team = null
       this.toastr.error("Team Deleted", 'Destroy!');
-    }, (err: any) => {this.apiError(err)})
-  }
-
-  apiError(err: any){
-    console.error(err)
-    this.toastr.error(err.message, 'Error!');
+    })
   }
 }

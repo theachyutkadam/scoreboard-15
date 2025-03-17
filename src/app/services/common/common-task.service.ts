@@ -21,5 +21,5 @@ export class CommonTaskService {
     {"id": 'batsman', "name": 'Batsman'},
     {"id": 'filder', "name": 'Filder'},
   ]
-  constructor() { }
+  constructor(){}
 }

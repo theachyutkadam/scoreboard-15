@@ -38,7 +38,7 @@ export class RegistrationComponent {
 
   patchFakeUser(){
     this.registration_form.patchValue({
-      "email": "adminmailinator.com",
+      "email": "admin@mailinator.com",
       "password": '11223344',
       "confirm_password": '11223344'
     })
@@ -58,8 +58,8 @@ export class RegistrationComponent {
     let payload = {
       "email"    : form.email,
       "status"   : 1,
-      "role_id"  : 1,
-      "password" : form.password,
+      "role_id"  : '',
+      "password" : '',
     }
     return payload
   }
@@ -67,10 +67,7 @@ export class RegistrationComponent {
   registration(){
     this.http.post('users', this.setPayload(this.registration_form.value)).subscribe((response: any) => {
       console.log('registration--->', response);
-      response.status == 201 ? this.afterLogin(response) : this.error(response)
-    }, (error: any) => {
-      console.error(error.errors)
-      this.toastr.error(error.errors, 'Error!');
+      response.status == 201 ?? this.afterLogin(response)
     })
   }
 
@@ -79,9 +76,5 @@ export class RegistrationComponent {
     sessionStorage.setItem("user_details", response.user_details)
     this.router.navigateByUrl('/profile')
     this.toastr.success(response.email, 'Welcome!');
-  }
-
-  error(response: any){
-    this.toastr.error(response.errors, 'Error!');
   }
 }

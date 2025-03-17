@@ -20,6 +20,14 @@ export class ErrorInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
+        if(error.status == 401){
+          console.log('-true 401-->');
+          this._router.navigateByUrl('/login')
+          sessionStorage.clear()
+          this._toastr.error(error.error.errors, error.status.toString())
+          return throwError(() => 'Unauthorized Error');
+        }
+
         console.log('Check--ErrorInterceptor->', error);
         let errorMessage = '';
         if (error.error instanceof ErrorEvent) {
@@ -29,10 +37,11 @@ export class ErrorInterceptor implements HttpInterceptor {
           // Server-side error
           errorMessage = `Error Code: ${error.status}\nMessage: ${error.error.errors}`;
         }
-        if(error.error.errors == 401){
-          this._router.navigateByUrl('/login')
-          this._toastr.error(error.error.errors, error.status.toString())
-        }
+        console.log('check status--->', error.status);
+        // if(error.status == 401){
+        //   this._router.navigateByUrl('/login')
+        //   this._toastr.error(error.error.errors, error.status.toString())
+        // }
         // Log the error
         if (typeof error.error.errors == "string") {
           this._toastr.error(error.error.errors, error.status.toString())
